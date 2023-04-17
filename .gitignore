@@ -1,3 +1,11 @@
+.vs
+[Tt]ests
+
+# VS Project Files
+*.vcxproj
+*.user
+*.sln
+
 # Prerequisites
 *.d
 
