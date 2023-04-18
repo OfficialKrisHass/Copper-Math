@@ -6,7 +6,7 @@ namespace CMath {
 
 	inline void SetRandomSeed(uint32_t seed = 2'147'483'647) {
 
-		if (seed == 2'147'483'647) seed = time(nullptr);
+		if (seed == 2'147'483'647) seed = (uint32_t) time(nullptr);
 		srand(seed);
 
 	}
