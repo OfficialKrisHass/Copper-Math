@@ -21,6 +21,24 @@ namespace CMath {
 		static vec3<Type> one;
 		static vec3<Type> minusOne;
 
+		inline Type Dot(const vec3<Type>& other) const { return x * other.x + y * other.y + z * other.z; }
+		inline vec3<Type> Cross(const vec3<Type>& other) const {
+
+			return vec3<Type>(y * other.z - z * other.y,
+							  z * other.x - x * other.z,
+							  x * other.y - y * other.x);
+
+		}
+
+		inline float LengthSq() const { return x * x + y * y + z * z; }
+		inline float Length() const { return sqrt(x * x + y * y + z * z); }
+
+		inline vec3<Type> Normalized() const { return *this / Length(); }
+		inline void Normalize() { *this /= Length(); }
+
+		inline bool operator==(const vec3<Type>& other) { return x == other.x && y == other.y && z == other.z; }
+		inline bool operator!=(const vec3<Type>& other) { return x != other.x || y != other.y || z != other.z; }
+
 		vec3<Type> operator+(const vec3<Type>& other) const { return vec3<Type>(x + other.x, y + other.y, z + other.z); }
 		vec3<Type> operator-(const vec3<Type>& other) const { return vec3<Type>(x - other.x, y - other.y, z - other.z); }
 		vec3<Type> operator*(const vec3<Type>& other) const { return vec3<Type>(x * other.x, y * other.y, z * other.z); }
@@ -142,6 +160,17 @@ namespace CMath {
 		static vec4<Type> zero;
 		static vec4<Type> one;
 		static vec4<Type> minusOne;
+
+		inline Type Dot(const vec4<Type>& other) const { return x * other.x + y * other.y + z * other.z + w * other.w; }
+
+		inline float LengthSq() const { return x * x + y * y + z * z + w * w; }
+		inline float Length() const { return sqrt(x * x + y * y + z * z + w * w); }
+
+		inline vec4<Type> Normalized() const { return *this / Length(); }
+		inline void Normalize() { *this /= Length(); }
+
+		inline bool operator==(const vec4<Type>& other) { return x == other.x && y == other.y && z == other.z && w == other.w; }
+		inline bool operator!=(const vec4<Type>& other) { return x != other.x || y != other.y || z != other.z || w != other.w; }
 
 		vec4<Type> operator+(const vec4<Type>& other) const { return vec4<Type>(x + other.x, y + other.y, z + other.z, w + other.w); }
 		vec4<Type> operator-(const vec4<Type>& other) const { return vec4<Type>(x - other.x, y - other.y, z - other.z, w - other.w); }

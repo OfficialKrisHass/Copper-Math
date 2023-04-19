@@ -15,6 +15,17 @@ namespace CMath {
 		static vec2<Type> one;
 		static vec2<Type> minusOne;
 
+		inline Type Dot(const vec2<Type>& other) const { return x * other.x + y * other.y; }
+
+		inline float LengthSq() const { return x * x + y * y; }
+		inline float Length() const { return sqrt(x * x + y * y); }
+
+		inline vec2<Type> Normalized() const { return *this / Length(); }
+		inline void Normalize() { *this /= Length(); }
+
+		inline bool operator==(const vec2<Type>& other) { return x == other.x && y == other.y; }
+		inline bool operator!=(const vec2<Type>& other) { return x != other.x || y != other.y; }
+
 		vec2<Type> operator+(const vec2<Type>& other) const { return vec2<Type>(x + other.x, y + other.y); }
 		vec2<Type> operator-(const vec2<Type>& other) const { return vec2<Type>(x - other.x, y - other.y); }
 		vec2<Type> operator*(const vec2<Type>& other) const { return vec2<Type>(x * other.x, y * other.y); }
