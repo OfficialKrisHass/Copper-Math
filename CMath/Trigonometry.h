@@ -6,6 +6,10 @@
 
 namespace CMath {
 
+	//Static variables
+
+	inline const double pi = 3.14159265358979323846;
+
 	//Wrappers for the standard lib
 
 	inline float Sin(float f) { return std::sin(f); }

@@ -21,7 +21,7 @@ project "Copper-Math"
     includedirs {
 
         "CMath",
-        "GLM"
+        "GLM/include"
 
     }
 

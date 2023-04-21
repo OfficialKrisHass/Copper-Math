@@ -4,6 +4,10 @@
 //Do the same as I did for the other 2 vectors it just doesn't work, WHY WHY DO YOU NOT WORK
 //So it has to be in here, yay
 
+#ifdef INCLUDE_GLM
+	#include <GLM/glm.hpp>
+#endif
+
 namespace CMath {
 
 	template<typename Type> struct vec3 {
@@ -38,6 +42,13 @@ namespace CMath {
 
 		inline bool operator==(const vec3<Type>& other) { return x == other.x && y == other.y && z == other.z; }
 		inline bool operator!=(const vec3<Type>& other) { return x != other.x || y != other.y || z != other.z; }
+
+	#ifdef INCLUDE_GLM
+		inline bool operator==(const glm::vec<3, Type>& other) { return x == other.x && y == other.y && z == other.z; }
+		inline bool operator!=(const glm::vec<3, Type>& other) { return x != other.x || y != other.y || z != other.z; }
+
+		operator glm::vec<3, Type>() const { return glm::vec<3, Type>(x, y, z); }
+	#endif
 
 		vec3<Type> operator+(const vec3<Type>& other) const { return vec3<Type>(x + other.x, y + other.y, z + other.z); }
 		vec3<Type> operator-(const vec3<Type>& other) const { return vec3<Type>(x - other.x, y - other.y, z - other.z); }
@@ -171,6 +182,13 @@ namespace CMath {
 
 		inline bool operator==(const vec4<Type>& other) { return x == other.x && y == other.y && z == other.z && w == other.w; }
 		inline bool operator!=(const vec4<Type>& other) { return x != other.x || y != other.y || z != other.z || w != other.w; }
+
+	#ifdef INCLUDE_GLM
+		inline bool operator==(const glm::vec<4, Type>& other) { return x == other.x && y == other.y && z == other.z && w == other.w; }
+		inline bool operator!=(const glm::vec<4, Type>& other) { return x != other.x || y != other.y || z != other.z || w != other.w; }
+
+		operator glm::vec<4, Type>() const { return glm::vec<4, Type>(x, y, z, w); }
+	#endif
 
 		vec4<Type> operator+(const vec4<Type>& other) const { return vec4<Type>(x + other.x, y + other.y, z + other.z, w + other.w); }
 		vec4<Type> operator-(const vec4<Type>& other) const { return vec4<Type>(x - other.x, y - other.y, z - other.z, w - other.w); }

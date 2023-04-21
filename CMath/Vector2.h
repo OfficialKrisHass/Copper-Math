@@ -1,5 +1,9 @@
 #pragma once
 
+#ifdef INCLUDE_GLM
+	#include <GLM/glm.hpp>
+#endif
+
 namespace CMath {
 
 	template<typename Type> struct vec2 {
@@ -25,6 +29,13 @@ namespace CMath {
 
 		inline bool operator==(const vec2<Type>& other) { return x == other.x && y == other.y; }
 		inline bool operator!=(const vec2<Type>& other) { return x != other.x || y != other.y; }
+
+	#ifdef INCLUDE_GLM
+		inline bool operator==(const glm::vec<2, Type>& other) { return x == other.x && y == other.y; }
+		inline bool operator!=(const glm::vec<2, Type>& other) { return x != other.x || y != other.y; }
+
+		operator glm::vec<2, Type>() const { return glm::vec<2, Type>(x, y); }
+	#endif
 
 		vec2<Type> operator+(const vec2<Type>& other) const { return vec2<Type>(x + other.x, y + other.y); }
 		vec2<Type> operator-(const vec2<Type>& other) const { return vec2<Type>(x - other.x, y - other.y); }
