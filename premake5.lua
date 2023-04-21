@@ -20,7 +20,8 @@ project "Copper-Math"
 
     includedirs {
 
-        "CMath"
+        "CMath",
+        "GLM"
 
     }
 
