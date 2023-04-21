@@ -134,8 +134,8 @@ namespace CMath {
 
 	//Typedefs so that we don't have to use the templates
 	typedef vec2<float> Vector2;
-	typedef vec2<int> Vector2I;
-	typedef vec2<unsigned int> UVector2I;
+	typedef vec2<int32_t> Vector2I;
+	typedef vec2<uint32_t> UVector2I;
 
 	//Static Members
 	StaticMembers(Vector2)
