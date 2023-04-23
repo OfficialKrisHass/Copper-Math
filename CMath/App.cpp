@@ -1,10 +1,11 @@
 #include <iostream>
 #include <vector>
 
-#define INCLUDE_GLM
 #include "CMath.h"
 
 #include <GLM/glm.hpp>
+#include <GLM/ext/matrix_transform.hpp>
+#include <GLM/ext/matrix_clip_space.hpp>
 
 using namespace CMath;
 
@@ -18,6 +19,10 @@ std::vector<std::string> unsuccessfullFeatures;
 void TestNumberManipulation();
 void TestTrigonometry();
 void TestVectorMath();
+void TestMatrixMath();
+
+void TestTransformMatrix();
+void TestViewAndProjectionMatrix();
 
 void PrintUnsuccessfullFeatures();
 
@@ -26,6 +31,10 @@ int main() {
 	TestNumberManipulation();
 	TestTrigonometry();
 	TestVectorMath();
+	TestMatrixMath();
+
+	TestTransformMatrix();
+	TestViewAndProjectionMatrix();
 
 	PrintUnsuccessfullFeatures();
 
@@ -163,6 +172,89 @@ void TestVectorMath() {
 	Test(a4 - 4.9f, (glm::vec4) a4 - 4.9f, "Vector4 Subtraction - a - 4.9");
 	Test(a4 * -2.0f, (glm::vec4) a4 * -2.0f, "Vector4 Multiplication - a * -2");
 	Test(c4 / 5.0f, (glm::vec4) c4 / 5.0f, "Vector4 Dividing - c / 5");
+
+	std::cout << std::endl;
+
+}
+void TestMatrixMath() {
+
+	std::cout << "---------------------" << std::endl;
+	std::cout << "-----Matrix Math-----" << std::endl;
+	std::cout << "---------------------" << std::endl;
+	std::cout << std::endl;
+
+	Matrix4 a(1.0f);
+	Matrix4 b(2.98f);
+	Matrix4 c(Vector4(1.0f), Vector4::one, Vector4(2.5f, 7.9f), Vector4(0.0f, 1.0f, 0.0f));
+
+	Test(Inverse(b), glm::inverse((glm::mat4) b), "Inverse Matrix - b");
+
+	std::cout << std::endl;
+
+	Test(a + b, (glm::mat4) a + (glm::mat4) b, "Matrix Addition - a + b");
+	Test(a - b, (glm::mat4) a - (glm::mat4) b, "Matrix Subtraction - a - b");
+	Test(a * b, (glm::mat4) a * (glm::mat4) b, "Matrix Multiplication - a * b");
+	Test(a * Inverse(b), (glm::mat4) a * (glm::mat4) Inverse(b), "Matrix Inverse Multiplication - a * Inverse(b)");
+
+	std::cout << std::endl;
+
+	Test(a +  5.7f, (glm::mat4) a +  5.7f, "Matrix Scalar Addition - a + 5.7");
+	Test(a -  3.9f, (glm::mat4) a -  3.9f, "Matrix Scalar Subtraction - a - 3.9");
+	Test(a * -2.2f, (glm::mat4) a * -2.2f, "Matrix Scalar Multiplication - a * -2.2");
+
+	std::cout << std::endl;
+
+}
+
+void TestTransformMatrix() {
+
+	std::cout << "--------------------------" << std::endl;
+	std::cout << "-----Matrix Transform-----" << std::endl;
+	std::cout << "--------------------------" << std::endl;
+	std::cout << std::endl;
+
+	Matrix4 mat(1.0f);
+	glm::mat4 mat2(1.0f);
+
+	TranslateMatrix(mat, Vector3(1.0f, 0.0f, -1.0f));
+	mat2 = glm::translate(mat2, glm::vec3(1.0f, 0.0f, -1.0f));
+	Test(mat, mat2, "Matrix Translation - Vector3(1, 0, -1)");
+
+	RotateMatrix(mat, Vector3(1.0f, 0.0f, 0.0f), 90.0f);
+	RotateMatrix(mat, Vector3(0.0f, 1.0f, 0.0f), 45.0f);
+	RotateMatrix(mat, Vector3(0.0f, 0.0f, 1.0f), 0.0f);
+	mat2 = glm::rotate(mat2, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+	mat2 = glm::rotate(mat2, glm::radians(45.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	mat2 = glm::rotate(mat2, glm::radians(0.0f), glm::vec3(1.0f, 0.0f, 1.0f));
+	Test(mat, mat2, "Matrix Rotation - Vector3(90, 45, 0)");
+
+	ScaleMatrix(mat, Vector3(1.0f, 5.0f, 1.0f));
+	mat2 = glm::scale(mat2, glm::vec3(1.0f, 5.0f, 1.0f));
+	Test(mat, mat2, "Matrix Scaling - Vector3(1, 5, 1)");
+
+	std::cout << std::endl;
+
+}
+void TestViewAndProjectionMatrix() {
+
+	std::cout << "--------------------------------------" << std::endl;
+	std::cout << "-----View And Projection Matrices-----" << std::endl;
+	std::cout << "--------------------------------------" << std::endl;
+	std::cout << std::endl;
+
+	Matrix4 mat;
+	glm::mat4 mat2(1.0f);
+
+	mat = ViewMatrix(Vector3(0.0f, 0.0f, 1.0f), Vector3(0.0f, 0.0f, -1.0f), Vector3(0.0f, 1.0f, 0.0f));
+	mat2 = glm::lookAt(glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	Test(mat, mat2, "View Matrix");
+
+	Matrix4 prj;
+	glm::mat4 prj2(1.0f);
+
+	prj = ProjectionMatrix(90.0f, 1280.0f / 720.0f, 0.1f, 100.0f);
+	prj2 = glm::perspective(glm::radians(90.0f), 1280.0f / 720.0f, 0.1f, 100.0f);
+	Test(mat, mat2, "Projection Matrix");
 
 	std::cout << std::endl;
 

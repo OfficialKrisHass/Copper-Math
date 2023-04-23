@@ -8,6 +8,10 @@
 	#include <GLM/glm.hpp>
 #endif
 
+#include "Vector2.h"
+
+#include <ostream>
+
 namespace CMath {
 
 	template<typename Type> struct vec3 {
@@ -73,6 +77,14 @@ namespace CMath {
 							  z - other * (int32_t) ((int32_t) z / other));
 		}
 
+		vec3<Type>& operator=(const vec3<Type>& other) {
+
+			this->x = other.x;
+			this->y = other.y;
+			this->z = other.z;
+			return *this;
+
+		}
 		vec3<Type>& operator+=(const vec3<Type>& other) {
 
 			x += other.x;
@@ -155,6 +167,39 @@ namespace CMath {
 
 		}
 
+		vec3<Type> operator-() const { return vec3<Type>(-x, -y, -z); }
+
+		vec3<Type>& operator++() {
+
+			x++;
+			y++;
+			z++;
+			return *this;
+
+		}
+		vec3<Type>& operator--() {
+
+			x--;
+			y--;
+			z--;
+			return *this;
+
+		}
+		vec3<Type>  operator++(int) {
+
+			vec3<Type> ret = *this;
+			++*this;
+			return ret;
+
+		}
+		vec3<Type>  operator--(int) {
+
+			vec3<Type> ret = *this;
+			--*this;
+			return ret;
+
+		}
+
 	};
 	template<typename Type> struct vec4 {
 
@@ -215,6 +260,15 @@ namespace CMath {
 							  w - other * (int32_t) ((int32_t) w / other));
 		}
 
+		vec4<Type>& operator=(const vec4<Type>& other) {
+
+			this->x = other.x;
+			this->y = other.y;
+			this->z = other.z;
+			this->w = other.w;
+			return *this;
+
+		}
 		vec4<Type>& operator+=(const vec4<Type>& other) {
 
 			x += other.x;
@@ -304,6 +358,41 @@ namespace CMath {
 			z -= other * (int32_t) ((int32_t) z / other);
 			w -= other * (int32_t) ((int32_t) w / other);
 			return *this;
+
+		}
+
+		vec4<Type> operator-() const { return vec4<Type>(-x, -y, -z, -w); }
+
+		vec4<Type>& operator++() {
+
+			x++;
+			y++;
+			z++;
+			w++;
+			return *this;
+
+		}
+		vec4<Type>& operator--() {
+
+			x--;
+			y--;
+			z--;
+			w--;
+			return *this;
+
+		}
+		vec4<Type>  operator++(int) {
+
+			vec4<Type> ret = *this;
+			++*this;
+			return ret;
+
+		}
+		vec4<Type>  operator--(int) {
+
+			vec4<Type> ret = *this;
+			--*this;
+			return ret;
 
 		}
 

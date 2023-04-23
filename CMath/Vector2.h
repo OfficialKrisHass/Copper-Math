@@ -4,6 +4,8 @@
 	#include <GLM/glm.hpp>
 #endif
 
+#include <ostream>
+
 namespace CMath {
 
 	template<typename Type> struct vec2 {
@@ -58,6 +60,13 @@ namespace CMath {
 							  y - other * (int32_t) ((int32_t) y / other));
 		}
 
+		vec2<Type>& operator=(const vec2<Type>& other) {
+
+			this->x = other.x;
+			this->y = other.y;
+			return *this;
+
+		}
 		vec2<Type>& operator+=(const vec2<Type>& other) {
 
 			x += other.x;
@@ -127,6 +136,37 @@ namespace CMath {
 			x -= other * (int32_t) ((int32_t) x / other);
 			y -= other * (int32_t) ((int32_t) y / other);
 			return *this;
+
+		}
+
+		vec2<Type> operator-() const { return vec2<Type>(-x, -y); }
+
+		vec2<Type>& operator++() {
+
+			x++;
+			y++;
+			return *this;
+
+		}
+		vec2<Type>& operator--() {
+
+			x--;
+			y--;
+			return *this;
+
+		}
+		vec2<Type>  operator++(int) {
+
+			vec2<Type> ret = *this;
+			++*this;
+			return ret;
+
+		}
+		vec2<Type>  operator--(int) {
+
+			vec2<Type> ret = *this;
+			--*this;
+			return ret;
 
 		}
 

@@ -5,3 +5,7 @@
 #include "NumberManipulation.h"
 
 #include "Vectors.h"
+#include "Matrix.h"
+
+#include "MatrixTransform.h"
+#include "MatrixViewAndProjection.h"
