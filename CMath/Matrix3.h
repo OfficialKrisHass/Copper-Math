@@ -6,6 +6,7 @@
 #endif
 
 #include "Vectors.h"
+#include "Matrix4.h"
 
 namespace CMATH_NAMESPACE {
 
@@ -26,6 +27,14 @@ namespace CMATH_NAMESPACE {
 			cols[0] = col0;
 			cols[1] = col1;
 			cols[2] = col2;
+
+		}
+
+		mat3(const mat4<Type>& mat) {
+
+			cols[0] = mat.cols[0];
+			cols[1] = mat.cols[1];
+			cols[2] = mat.cols[2];
 
 		}
 
