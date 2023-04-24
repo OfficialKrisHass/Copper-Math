@@ -6,13 +6,24 @@
 
 #include <ostream>
 
+#define StaticMembers(Type) Type Type::zero = Type(Type(0));\
+							Type Type::one = Type(Type(1));\
+							Type Type::minusOne = Type(Type(-1));
+
 namespace CMath {
+
+	template<typename Type> struct vec3;
+	template<typename Type> struct vec4;
 
 	template<typename Type> struct vec2 {
 
 		vec2() : x(Type(0)), y(Type(0)) {}
+
 		vec2(Type all) : x(all), y(all) {}
 		vec2(Type x, Type y) : x(x), y(y) {}
+
+		vec2(const vec3<Type>& vec);
+		vec2(const vec4<Type>& vec);
 
 		Type x;
 		Type y;
@@ -202,5 +213,15 @@ namespace CMath {
 	StaticMembers(Vector2)
 	StaticMembers(Vector2I)
 	StaticMembers(UVector2I)
+
+}
+
+#include "Vector3.h"
+#include "Vector4.h"
+
+namespace CMath {
+
+	template<typename Type> vec2<Type>::vec2(const vec3<Type>& vec) : x(vec.x), y(vec.y) {}
+	template<typename Type> vec2<Type>::vec2(const vec4<Type>& vec) : x(vec.x), y(vec.y) {}
 
 }

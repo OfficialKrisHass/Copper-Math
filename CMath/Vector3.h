@@ -12,12 +12,19 @@
 
 namespace CMath {
 
+	template<typename Type> struct vec4;
+
 	template<typename Type> struct vec3 {
 
 		vec3() : x(Type(0)), y(Type(0)), z(Type(0)) {}
+
 		vec3(Type all) : x(all), y(all), z(all) {}
 		vec3(Type x, Type y, Type z = Type(0)) : x(x), y(y), z(z) {}
-		vec3(vec2<Type> vec, Type z = Type(0)) : x(vec.x), y(vec.y), z(z) {}
+
+		vec3(const vec2<Type>& xy, Type z = Type(0)) : x(xy.x), y(xy.y), z(z) {}
+		vec3(Type x, const vec2<Type>& yz) : x(x), y(yz.x), z(yz.x) {}
+
+		vec3(const vec4<Type>& vec);
 
 		Type x;
 		Type y;
@@ -233,5 +240,13 @@ namespace CMath {
 	StaticMembers(Vector3);
 	StaticMembers(Vector3I);
 	StaticMembers(UVector3I);
+
+}
+
+#include "Vector4.h"
+
+namespace CMath {
+
+	template<typename Type> vec3<Type>::vec3(const vec4<Type>& vec) : x(vec.x), y(vec.y), z(vec.z) {}
 
 }

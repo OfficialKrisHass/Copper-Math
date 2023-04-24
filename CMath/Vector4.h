@@ -11,9 +11,17 @@ namespace CMath {
 	template<typename Type> struct vec4 {
 
 		vec4() : x(Type(0)), y(Type(0)), z(Type(0)), w(Type(0)) {}
+
 		vec4(Type all) : x(all), y(all), z(all), w(all) {}
 		vec4(Type x, Type y, Type z, Type w = Type(0)) : x(x), y(y), z(z), w(w) {}
-		vec4(vec3<Type> vec, Type w = Type(0)) : x(vec.x), y(vec.y), z(vec.z), w(w) {}
+
+		vec4(const vec2<Type>& xy, Type z = Type(0), Type w = Type(0)) : x(xy.x), y(xy.y), z(z), w(w) {}
+		vec4(Type x, const vec2<Type>& yz, Type w = Type(0)) : x(x), y(yz.x), z(yz.x), w(w) {}
+		vec4(Type x, Type y, const vec2<Type>& zw) : x(x), y(y), z(zw.x), w(zw.y) {}
+		vec4(const vec2<Type>& xy, const vec2<Type>& zw) : x(xy.x), y(xy.y), z(zw.x), w(zw.y) {}
+
+		vec4(const vec3<Type>& xyz, Type w = Type(0)) : x(xyz.x), y(xyz.y), z(xyz.z), w(w) {}
+		vec4(Type x, const vec3<Type>& yzw) : x(x), y(yzw.x), z(yzw.y), w(yzw.z) {}
 
 		Type x;
 		Type y;

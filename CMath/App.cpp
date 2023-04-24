@@ -185,7 +185,7 @@ void TestMatrixMath() {
 
 	Matrix4 a(1.0f);
 	Matrix4 b(2.98f);
-	Matrix4 c(Vector4(1.0f), Vector4::one, Vector4(2.5f, 7.9f), Vector4(0.0f, 1.0f, 0.0f));
+	Matrix4 c(Vector4(1.0f), Vector4::one, Vector4(2.5f, 7.9f, 3.9f), Vector4(0.0f, 1.0f, 0.0f));
 
 	Test(Inverse(b), glm::inverse((glm::mat4) b), "Inverse Matrix - b");
 
