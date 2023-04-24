@@ -2,6 +2,7 @@
 #include <vector>
 
 #define CMATH_PARENT_NAMESPACE Copper
+#define INCLUDE_GLM
 #include "CMath.h"
 
 #include <GLM/glm.hpp>
@@ -33,6 +34,8 @@ int main() {
 	TestTrigonometry();
 	TestVectorMath();
 	TestMatrixMath();
+
+	glm::mat3 mat;
 
 	TestTransformMatrix();
 	TestViewAndProjectionMatrix();

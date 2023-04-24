@@ -35,7 +35,7 @@ namespace CMATH_NAMESPACE {
 
 		vec4<Type> cols[4];
 
-		//---- Math Functions
+		//---- Math Functions----
 
 		inline mat4<Type>& TurnInverse() {
 
@@ -108,8 +108,8 @@ namespace CMATH_NAMESPACE {
 		inline mat4<Type> operator-(const Type scalar) const { return mat4<Type>(cols[0] - scalar, cols[1] - scalar, cols[2] - scalar, cols[3] - scalar); }
 		inline mat4<Type> operator*(const Type scalar) const { return mat4<Type>(cols[0] * scalar, cols[1] * scalar, cols[2] * scalar, cols[3] * scalar); }
 
-		inline vec4<Type> operator*(const vec4<Type>& vec) { return cols[0] * vec.x + cols[1] * vec.y + cols[2] * vec.z + cols[3] * vec.w; }
-		inline vec4<Type> operator/(const vec4<Type>& vec) { return Inverse(*this) * vec; }
+		inline vec4<Type> operator*(const vec4<Type>& vec) const { return cols[0] * vec.x + cols[1] * vec.y + cols[2] * vec.z + cols[3] * vec.w; }
+		inline vec4<Type> operator/(const vec4<Type>& vec) const { return Inverse(*this) * vec; }
 
 		//----Math and Assignement operators----
 
@@ -241,8 +241,8 @@ namespace CMATH_NAMESPACE {
 
 		//----Misc. Operators----
 
-		inline vec4<Type>& operator[](uint32_t index) { return cols[index]; }
 		inline mat4<Type> operator-() const { return mat4<Type>(-cols[0], -cols[1], -cols[2], -cols[3]); }
+		inline vec4<Type>& operator[](uint32_t index) { return cols[index]; }
 
 	};
 	template<typename Type> mat4<Type> Inverse(const mat4<Type>& m) {
@@ -308,9 +308,9 @@ namespace CMATH_NAMESPACE {
 
 	//----Math Operators for Diferent orders----
 
-	template<typename Type> mat4<Type> operator+(Type scalar, const mat4<Type>& mat) { return mat4<Type>(cols[0] + scalar, cols[1] + scalar, cols[2] + scalar, cols[3] + scalar); }
-	template<typename Type> mat4<Type> operator-(Type scalar, const mat4<Type>& mat) { return mat4<Type>(cols[0] - scalar, cols[1] - scalar, cols[2] - scalar, cols[3] - scalar); }
-	template<typename Type> mat4<Type> operator*(Type scalar, const mat4<Type>& mat) { return mat4<Type>(cols[0] * scalar, cols[1] * scalar, cols[2] * scalar, cols[3] * scalar); }
+	template<typename Type> mat4<Type> operator+(Type scalar, const mat4<Type>& mat) { return mat4<Type>(mat.cols[0] + scalar, mat.cols[1] + scalar, mat.cols[2] + scalar, mat.cols[3] + scalar); }
+	template<typename Type> mat4<Type> operator-(Type scalar, const mat4<Type>& mat) { return mat4<Type>(mat.cols[0] - scalar, mat.cols[1] - scalar, mat.cols[2] - scalar, mat.cols[3] - scalar); }
+	template<typename Type> mat4<Type> operator*(Type scalar, const mat4<Type>& mat) { return mat4<Type>(mat.cols[0] * scalar, mat.cols[1] * scalar, mat.cols[2] * scalar, mat.cols[3] * scalar); }
 	
 	template<typename Type> vec4<Type> operator*(const vec4<Type>& vec, const mat4<Type>& mat) {
 
