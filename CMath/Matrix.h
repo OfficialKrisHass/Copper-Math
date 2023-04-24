@@ -16,7 +16,7 @@ namespace CMath {
 
 	template<typename Type> struct mat4 {
 
-		mat4(Type identity = 1.0f) {
+		explicit mat4(Type identity = 1.0f) {
 
 			cols[0].x = identity;
 			cols[1].y = identity;
@@ -34,6 +34,8 @@ namespace CMath {
 		}
 
 		vec4<Type> cols[4];
+
+		//---- Math Functions
 
 		inline mat4<Type>& TurnInverse() {
 
@@ -87,7 +89,7 @@ namespace CMath {
 
 			mat4<Type> inverse(inv0 * a, inv1 * b, inv2 * a, inv3 * b);
 
-			vec4<Type> r0(inverse[0].x, inverse[1].x, inverse[2].x, inverse[3].x);
+			vec4<Type> r0(inverse.cols[0].x, inverse.cols[1].x, inverse.cols[2].x, inverse.cols[3].x);
 			vec4<Type> d0(cols[0] * r0);
 
 			Type d1 = (d0.x + d0.y) + (d0.z + d0.w);
@@ -96,16 +98,7 @@ namespace CMath {
 
 		}
 
-	#pragma region OperatorOverloads
-		inline bool operator==(const mat4<Type>& other) { return cols[0] == other.cols[0] && cols[1] == other.cols[1] && cols[2] == other.cols[2] && cols[3] == other.cols[3]; }
-		inline bool operator!=(const mat4<Type>& other) { !(*this == other); }
-
-	#ifdef INCLUDE_GLM
-		inline bool operator==(const glm::mat<4, 4, Type>& other) { return cols[0] == other[0] && cols[1] == other[1] && cols[2] == other[2] && cols[3] == other[3]; }
-		inline bool operator!=(const glm::mat<4, 4, Type>& other) { !(*this == other); }
-
-		inline operator glm::mat<4, 4, Type>() const { return glm::mat<4, 4, Type>(cols[0], cols[1], cols[2], cols[3]); }
-	#endif
+		//----Math Operators----
 
 		inline mat4<Type> operator+(const mat4<Type>& other) const { return mat4<Type>(cols[0] + other.cols[0], cols[1] + other.cols[1], cols[2] + other.cols[2], cols[3] + other.cols[3]); }
 		inline mat4<Type> operator-(const mat4<Type>& other) const { return mat4<Type>(cols[0] - other.cols[0], cols[1] - other.cols[1], cols[2] - other.cols[2], cols[3] - other.cols[3]); }
@@ -114,6 +107,11 @@ namespace CMath {
 		inline mat4<Type> operator+(const Type scalar) const { return mat4<Type>(cols[0] + scalar, cols[1] + scalar, cols[2] + scalar, cols[3] + scalar); }
 		inline mat4<Type> operator-(const Type scalar) const { return mat4<Type>(cols[0] - scalar, cols[1] - scalar, cols[2] - scalar, cols[3] - scalar); }
 		inline mat4<Type> operator*(const Type scalar) const { return mat4<Type>(cols[0] * scalar, cols[1] * scalar, cols[2] * scalar, cols[3] * scalar); }
+
+		inline vec4<Type> operator*(const vec4<Type>& vec) { return cols[0] * vec.x + cols[1] * vec.y + cols[2] * vec.z + cols[3] * vec.w; }
+		inline vec4<Type> operator/(const vec4<Type>& vec) { return Inverse(*this) * vec; }
+
+		//----Math and Assignement operators----
 
 		inline mat4<Type>& operator=(const mat4<Type>& other) {
 
@@ -194,6 +192,20 @@ namespace CMath {
 
 		}
 
+		//----Comparison Operators----
+
+		inline bool operator==(const mat4<Type>& other) { return cols[0] == other.cols[0] && cols[1] == other.cols[1] && cols[2] == other.cols[2] && cols[3] == other.cols[3]; }
+		inline bool operator!=(const mat4<Type>& other) { !(*this == other); }
+
+	#ifdef INCLUDE_GLM
+		inline bool operator==(const glm::mat<4, 4, Type>& other) { return cols[0] == other[0] && cols[1] == other[1] && cols[2] == other[2] && cols[3] == other[3]; }
+		inline bool operator!=(const glm::mat<4, 4, Type>& other) { !(*this == other); }
+
+		inline operator glm::mat<4, 4, Type>() const { return glm::mat<4, 4, Type>(cols[0], cols[1], cols[2], cols[3]); }
+	#endif
+
+		//----Increments and Decrements----
+
 		inline mat4<Type>& operator++() {
 
 			++cols[0];
@@ -227,10 +239,9 @@ namespace CMath {
 
 		}
 
-		inline mat4<Type> operator-() const { return mat4<Type>(-cols[0], -cols[1], -cols[2], -cols[3]); }
-		inline vec4<Type>& operator[](uint32_t index) { return cols[index]; }
+		//----Misc. Operators----
 
-	#pragma endregion
+		inline mat4<Type> operator-() const { return mat4<Type>(-cols[0], -cols[1], -cols[2], -cols[3]); }
 
 	};
 	template<typename Type> mat4<Type> Inverse(const mat4<Type>& m) {
@@ -294,10 +305,22 @@ namespace CMath {
 
 	}
 
+	//----Math Operators for Diferent orders----
+
 	template<typename Type> mat4<Type> operator+(Type scalar, const mat4<Type>& mat) { return mat4<Type>(cols[0] + scalar, cols[1] + scalar, cols[2] + scalar, cols[3] + scalar); }
 	template<typename Type> mat4<Type> operator-(Type scalar, const mat4<Type>& mat) { return mat4<Type>(cols[0] - scalar, cols[1] - scalar, cols[2] - scalar, cols[3] - scalar); }
 	template<typename Type> mat4<Type> operator*(Type scalar, const mat4<Type>& mat) { return mat4<Type>(cols[0] * scalar, cols[1] * scalar, cols[2] * scalar, cols[3] * scalar); }
 	
+	template<typename Type> vec4<Type> operator*(const vec4<Type>& vec, const mat4<Type>& mat) {
+
+		return vec4<Type>(mat.cols[0].x * vec.x + mat.cols[0].y * vec.y + mat.cols[0].z * vec.z + mat.cols[0].w * vec.w,
+						  mat.cols[1].x * vec.x + mat.cols[1].y * vec.y + mat.cols[1].z * vec.z + mat.cols[1].w * vec.w,
+						  mat.cols[2].x * vec.x + mat.cols[2].y * vec.y + mat.cols[2].z * vec.z + mat.cols[2].w * vec.w,
+						  mat.cols[3].x * vec.x + mat.cols[3].y * vec.y + mat.cols[3].z * vec.z + mat.cols[3].w * vec.w);
+
+	}
+	template<typename Type> vec4<Type> operator/(const vec4<Type>& vec, const mat4<Type>& mat) { return v * Inverse(mat); }
+
 	typedef mat4<float> Matrix4;
 	typedef mat4<int32_t> Matrix4I;
 	typedef mat4<uint32_t> UMatrix4I;

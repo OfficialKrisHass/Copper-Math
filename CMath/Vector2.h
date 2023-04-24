@@ -19,7 +19,7 @@ namespace CMath {
 
 		vec2() : x(Type(0)), y(Type(0)) {}
 
-		vec2(Type all) : x(all), y(all) {}
+		explicit vec2(Type all) : x(all), y(all) {}
 		vec2(Type x, Type y) : x(x), y(y) {}
 
 		vec2(const vec3<Type>& vec);

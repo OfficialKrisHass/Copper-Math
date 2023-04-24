@@ -18,7 +18,7 @@ namespace CMath {
 
 		vec3() : x(Type(0)), y(Type(0)), z(Type(0)) {}
 
-		vec3(Type all) : x(all), y(all), z(all) {}
+		explicit vec3(Type all) : x(all), y(all), z(all) {}
 		vec3(Type x, Type y, Type z = Type(0)) : x(x), y(y), z(z) {}
 
 		vec3(const vec2<Type>& xy, Type z = Type(0)) : x(xy.x), y(xy.y), z(z) {}

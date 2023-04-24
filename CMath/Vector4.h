@@ -12,7 +12,7 @@ namespace CMath {
 
 		vec4() : x(Type(0)), y(Type(0)), z(Type(0)), w(Type(0)) {}
 
-		vec4(Type all) : x(all), y(all), z(all), w(all) {}
+		explicit vec4(Type all) : x(all), y(all), z(all), w(all) {}
 		vec4(Type x, Type y, Type z, Type w = Type(0)) : x(x), y(y), z(z), w(w) {}
 
 		vec4(const vec2<Type>& xy, Type z = Type(0), Type w = Type(0)) : x(xy.x), y(xy.y), z(z), w(w) {}
