@@ -3,7 +3,7 @@
 #include "Matrix.h"
 #include "Trigonometry.h"
 
-namespace CMath {
+namespace CMATH_NAMESPACE {
 
 	template<typename T> inline mat4<T> ViewMatrix(const vec3<T>& pos, const vec3<T>& forward, const vec3<T>& up) {
 

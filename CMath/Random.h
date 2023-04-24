@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 
-namespace CMath {
+namespace CMATH_NAMESPACE {
 
 	inline void SetRandomSeed(uint32_t seed = 2'147'483'647) {
 

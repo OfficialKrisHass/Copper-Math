@@ -6,7 +6,7 @@
 
 #include "Vector3.h"
 
-namespace CMath {
+namespace CMATH_NAMESPACE {
 
 	template<typename Type> struct vec4 {
 

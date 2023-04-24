@@ -9,7 +9,7 @@
 
 #include "Vectors.h"
 
-namespace CMath {
+namespace CMATH_NAMESPACE {
 
 	template<typename Type> struct mat4;
 	template<typename Type> mat4<Type> Inverse(const mat4<Type>& m);
@@ -241,6 +241,7 @@ namespace CMath {
 
 		//----Misc. Operators----
 
+		inline vec4<Type>& operator[](uint32_t index) { return cols[index]; }
 		inline mat4<Type> operator-() const { return mat4<Type>(-cols[0], -cols[1], -cols[2], -cols[3]); }
 
 	};

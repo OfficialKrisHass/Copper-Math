@@ -1,13 +1,14 @@
 #include <iostream>
 #include <vector>
 
+#define CMATH_PARENT_NAMESPACE Copper
 #include "CMath.h"
 
 #include <GLM/glm.hpp>
 #include <GLM/ext/matrix_transform.hpp>
 #include <GLM/ext/matrix_clip_space.hpp>
 
-using namespace CMath;
+using namespace CMATH_NAMESPACE;
 
 #define Test(x, y, feature) { if(x == y) { std::cout << feature << " was Successfull!" << std::endl; }\
 							  else { std::cout << "----------" << feature " Was Not successfull!" << std::endl;\
@@ -90,26 +91,26 @@ void TestTrigonometry() {
 	std::cout << "----------------------" << std::endl;
 	std::cout << std::endl;
 
-	Test(CMath::RadiansToDegrees(2.0f * (float) CMath::pi), glm::degrees(2.0f * (float) CMath::pi), "Radians to Degrees - 2pi");
-	Test(CMath::RadiansToDegrees(0.0f), glm::degrees(0.0f), "Radians to Degrees - zero");
-	Test(CMath::RadiansToDegrees(2.58469f), glm::degrees(2.58469f), "Radians to Degrees - 2.58469");
+	Test(RadiansToDegrees(2.0f * (float) pi), glm::degrees(2.0f * (float) pi), "Radians to Degrees - 2pi");
+	Test(RadiansToDegrees(0.0f), glm::degrees(0.0f), "Radians to Degrees - zero");
+	Test(RadiansToDegrees(2.58469f), glm::degrees(2.58469f), "Radians to Degrees - 2.58469");
 
 	std::cout << std::endl;
 
-	Test(CMath::RadiansToDegrees(Vector3(2.0f * (float) CMath::pi)), glm::degrees(glm::vec3(2.0f * (float) CMath::pi)), "Radians to Degrees VECTOR3 - 2pi");
-	Test(CMath::RadiansToDegrees(Vector3(2.58469f)), glm::degrees(glm::vec3(2.58469f)), "Radians to Degrees VECTOR3 - 2.58469");
+	Test(RadiansToDegrees(Vector3(2.0f * (float) pi)), glm::degrees(glm::vec3(2.0f * (float) pi)), "Radians to Degrees VECTOR3 - 2pi");
+	Test(RadiansToDegrees(Vector3(2.58469f)), glm::degrees(glm::vec3(2.58469f)), "Radians to Degrees VECTOR3 - 2.58469");
 
 	std::cout << std::endl;
 
-	Test(CMath::DegreesToRadians(360.0f), glm::radians(360.0f), "Degrees to Radians - 360");
-	Test(CMath::DegreesToRadians(0.0f), glm::radians(0.0f), "Degrees to Radians - 0");
-	Test(CMath::DegreesToRadians(180.0f), glm::radians(180.0f), "Degrees to Radians - 90");
-	Test(CMath::DegreesToRadians(123.0f), glm::radians(123.0f), "Degrees to Radians - 123");
+	Test(DegreesToRadians(360.0f), glm::radians(360.0f), "Degrees to Radians - 360");
+	Test(DegreesToRadians(0.0f), glm::radians(0.0f), "Degrees to Radians - 0");
+	Test(DegreesToRadians(180.0f), glm::radians(180.0f), "Degrees to Radians - 90");
+	Test(DegreesToRadians(123.0f), glm::radians(123.0f), "Degrees to Radians - 123");
 
 	std::cout << std::endl;
 
-	Test(CMath::DegreesToRadians(Vector3(360.0f)), glm::radians(glm::vec3(360.0f)), "Degrees to Radians VECTOR3 - 360");
-	Test(CMath::DegreesToRadians(Vector3(123.0f)), glm::radians(glm::vec3(123.0f)), "Degrees to Radians VECTOR3 - 123");
+	Test(DegreesToRadians(Vector3(360.0f)), glm::radians(glm::vec3(360.0f)), "Degrees to Radians VECTOR3 - 360");
+	Test(DegreesToRadians(Vector3(123.0f)), glm::radians(glm::vec3(123.0f)), "Degrees to Radians VECTOR3 - 123");
 
 	std::cout << std::endl;
 

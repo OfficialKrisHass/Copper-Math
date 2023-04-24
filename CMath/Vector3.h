@@ -10,7 +10,7 @@
 
 #include "Vector2.h"
 
-namespace CMath {
+namespace CMATH_NAMESPACE {
 
 	template<typename Type> struct vec4;
 
@@ -245,7 +245,7 @@ namespace CMath {
 
 #include "Vector4.h"
 
-namespace CMath {
+namespace CMATH_NAMESPACE {
 
 	template<typename Type> vec3<Type>::vec3(const vec4<Type>& vec) : x(vec.x), y(vec.y), z(vec.z) {}
 

@@ -3,7 +3,7 @@
 #include "Matrix.h"
 #include "Trigonometry.h"
 
-namespace CMath {
+namespace CMATH_NAMESPACE {
 
 	/*
 	* Translates the matrix specified by the position represented as a Vector3.

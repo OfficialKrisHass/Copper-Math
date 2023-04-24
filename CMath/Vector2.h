@@ -10,7 +10,7 @@
 							Type Type::one = Type(Type(1));\
 							Type Type::minusOne = Type(Type(-1));
 
-namespace CMath {
+namespace CMATH_NAMESPACE {
 
 	template<typename Type> struct vec3;
 	template<typename Type> struct vec4;
@@ -219,7 +219,7 @@ namespace CMath {
 #include "Vector3.h"
 #include "Vector4.h"
 
-namespace CMath {
+namespace CMATH_NAMESPACE {
 
 	template<typename Type> vec2<Type>::vec2(const vec3<Type>& vec) : x(vec.x), y(vec.y) {}
 	template<typename Type> vec2<Type>::vec2(const vec4<Type>& vec) : x(vec.x), y(vec.y) {}

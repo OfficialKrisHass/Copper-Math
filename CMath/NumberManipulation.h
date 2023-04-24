@@ -5,7 +5,7 @@
 #define MinImpl(type) inline type Min(type a, type b) { return (a > b) ? b : a; }
 #define MaxImpl(type) inline type Max(type a, type b) { return (a > b) ? a : b; }
 
-namespace CMath {
+namespace CMATH_NAMESPACE {
 
 	MinImpl(int32_t)
 	MinImpl(float)

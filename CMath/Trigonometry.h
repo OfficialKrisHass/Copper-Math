@@ -4,7 +4,7 @@
 
 #include "Vectors.h"
 
-namespace CMath {
+namespace CMATH_NAMESPACE {
 
 	//Static variables
 
