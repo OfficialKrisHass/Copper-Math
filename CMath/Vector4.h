@@ -23,6 +23,10 @@ namespace CMATH_NAMESPACE {
 		vec4(const vec3<Type>& xyz, Type w = Type(0)) : x(xyz.x), y(xyz.y), z(xyz.z), w(w) {}
 		vec4(Type x, const vec3<Type>& yzw) : x(x), y(yzw.x), z(yzw.y), w(yzw.z) {}
 
+#ifdef INCLUDE_GLM
+		vec4(const glm::vec<4, Type>& vec) : x(vec.x), y(vec.y), z(vec.z), w(vec.w) {}
+#endif
+
 		Type x;
 		Type y;
 		Type z;

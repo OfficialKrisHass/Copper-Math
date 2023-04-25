@@ -25,6 +25,10 @@ namespace CMATH_NAMESPACE {
 		vec2(const vec3<Type>& vec);
 		vec2(const vec4<Type>& vec);
 
+#ifdef INCLUDE_GLM
+		vec2(const glm::vec<2, Type>& vec) : x(vec.x), y(vec.y) {}
+#endif
+
 		Type x;
 		Type y;
 
