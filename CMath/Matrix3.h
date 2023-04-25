@@ -70,8 +70,8 @@ namespace CMATH_NAMESPACE {
 		inline mat3<Type> operator*(const mat3<Type>& other) const { return mat3<Type>(cols[0] * other.cols[0], cols[1] * other.cols[1], cols[2] * other.cols[2]); }
 		
 		inline mat3<Type> operator+(const Type scalar) const { return mat3<Type>(cols[0] + scalar, cols[1] + scalar, cols[2] + scalar); }
-		inline mat3<Type> operator+(const Type scalar) const { return mat3<Type>(cols[0] - scalar, cols[1] - scalar, cols[2] - scalar); }
-		inline mat3<Type> operator+(const Type scalar) const { return mat3<Type>(cols[0] * scalar, cols[1] * scalar, cols[2] * scalar); }
+		inline mat3<Type> operator-(const Type scalar) const { return mat3<Type>(cols[0] - scalar, cols[1] - scalar, cols[2] - scalar); }
+		inline mat3<Type> operator*(const Type scalar) const { return mat3<Type>(cols[0] * scalar, cols[1] * scalar, cols[2] * scalar); }
 
 		inline vec3<Type> operator*(const vec3<Type>& vec) {
 
@@ -102,7 +102,7 @@ namespace CMATH_NAMESPACE {
 			return *this;
 
 		}
-		inline mat3<Type>& operator+=(const mat3<Type>& other) {
+		inline mat3<Type>& operator-=(const mat3<Type>& other) {
 
 			cols[0] -= other.cols[0];
 			cols[1] -= other.cols[1];
@@ -110,7 +110,7 @@ namespace CMATH_NAMESPACE {
 			return *this;
 
 		}
-		inline mat3<Type>& operator+=(const mat3<Type>& other) {
+		inline mat3<Type>& operator*=(const mat3<Type>& other) {
 
 			cols[0] *= other.cols[0];
 			cols[1] *= other.cols[1];
@@ -118,7 +118,7 @@ namespace CMATH_NAMESPACE {
 			return *this;
 
 		}
-		inline mat3<Type>& operator+=(const mat3<Type>& other) {
+		inline mat3<Type>& operator/=(const mat3<Type>& other) {
 
 			return *this * Inverse(mat);
 

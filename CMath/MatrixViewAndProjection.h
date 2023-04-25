@@ -35,7 +35,7 @@ namespace CMATH_NAMESPACE {
 		T tanHalfFov = Tan(fov / T(2));
 		mat4<T> ret(T(0));
 
-		ret[0].x =  T(1) / (aspectRatio / tanHalfFov);
+		ret[0].x =  T(1) / (aspectRatio * tanHalfFov);
 		ret[1].y =  T(1) / tanHalfFov;
 		ret[2].z = -(farPlane + nearPlane) / (farPlane - nearPlane);
 		ret[2].w =  T(-1);
