@@ -1,6 +1,8 @@
 .vs
 [Tt]ests
 
+[Mm]akefile
+
 # VS Project Files
 *.vcxproj
 *.user
