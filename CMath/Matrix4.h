@@ -195,11 +195,11 @@ namespace CMATH_NAMESPACE {
 		//----Comparison Operators----
 
 		inline bool operator==(const mat4<Type>& other) { return cols[0] == other.cols[0] && cols[1] == other.cols[1] && cols[2] == other.cols[2] && cols[3] == other.cols[3]; }
-		inline bool operator!=(const mat4<Type>& other) { !(*this == other); }
+		inline bool operator!=(const mat4<Type>& other) { return !(*this == other); }
 
 	#ifdef INCLUDE_GLM
 		inline bool operator==(const glm::mat<4, 4, Type>& other) { return cols[0] == other[0] && cols[1] == other[1] && cols[2] == other[2] && cols[3] == other[3]; }
-		inline bool operator!=(const glm::mat<4, 4, Type>& other) { !(*this == other); }
+		inline bool operator!=(const glm::mat<4, 4, Type>& other) { return !(*this == other); }
 
 		inline operator glm::mat<4, 4, Type>() const { return glm::mat<4, 4, Type>(cols[0], cols[1], cols[2], cols[3]); }
 	#endif
@@ -320,7 +320,7 @@ namespace CMATH_NAMESPACE {
 						  mat.cols[3].x * vec.x + mat.cols[3].y * vec.y + mat.cols[3].z * vec.z + mat.cols[3].w * vec.w);
 
 	}
-	template<typename Type> vec4<Type> operator/(const vec4<Type>& vec, const mat4<Type>& mat) { return v * Inverse(mat); }
+	template<typename Type> vec4<Type> operator/(const vec4<Type>& vec, const mat4<Type>& mat) { return vec * Inverse(mat); }
 
 	typedef mat4<float> Matrix4;
 	typedef mat4<int32_t> Matrix4I;

@@ -6,9 +6,9 @@
 
 #include <ostream>
 
-#define StaticMembers(Type) Type Type::zero = Type(Type(0));\
-							Type Type::one = Type(Type(1));\
-							Type Type::minusOne = Type(Type(-1));
+#define StaticMembers(Type) template<> Type Type::zero = Type(0);\
+							 template<> Type Type::one = Type(1);\
+							 template<> Type Type::minusOne = Type(-1);
 
 namespace CMATH_NAMESPACE {
 

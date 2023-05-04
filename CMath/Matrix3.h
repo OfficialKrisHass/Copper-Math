@@ -120,7 +120,7 @@ namespace CMATH_NAMESPACE {
 		}
 		inline mat3<Type>& operator/=(const mat3<Type>& other) {
 
-			return *this * Inverse(mat);
+			return *this * Inverse(other);
 
 		}
 
@@ -160,11 +160,11 @@ namespace CMATH_NAMESPACE {
 		//----Comparison Operators----
 
 		inline bool operator==(const mat3<Type>& other) { return cols[0] == other.cols[0] && cols[1] == other.cols[1] && cols[2] == other.cols[2]; }
-		inline bool operator!=(const mat3<Type>& other) { !(*this == other); }
+		inline bool operator!=(const mat3<Type>& other) { return !(*this == other); }
 
 	#ifdef INCLUDE_GLM
 		inline bool operator==(const glm::mat<3, 3, Type>& other) { return cols[0] == other[0] && cols[1] == other[1] && cols[2] == other[2]; }
-		inline bool operator!=(const glm::mat<3, 3, Type>& other) { !(*this == other); }
+		inline bool operator!=(const glm::mat<3, 3, Type>& other) { return !(*this == other); }
 
 		inline operator glm::mat<3, 3, Type>() const { return glm::mat<3, 3, Type>(cols[0], cols[1], cols[2]); }
 	#endif
@@ -237,9 +237,9 @@ namespace CMATH_NAMESPACE {
 
 	template<typename Type> vec3<Type> operator*(const vec3<Type>& vec, const mat3<Type>& mat) {
 
-		return vec3<Type>(cols[0].x * vec.x + cols[0].y * vec.y + cols[0].z * vec.z,
-						  cols[1].x * vec.x + cols[1].y * vec.y + cols[1].z * vec.z,
-						  cols[2].x * vec.x + cols[2].y * vec.y + cols[2].z * vec.z);
+		return vec3<Type>(mat.cols[0].x * vec.x + mat.cols[0].y * vec.y + mat.cols[0].z * vec.z,
+						  mat.cols[1].x * vec.x + mat.cols[1].y * vec.y + mat.cols[1].z * vec.z,
+						  mat.cols[2].x * vec.x + mat.cols[2].y * vec.y + mat.cols[2].z * vec.z);
 
 	}
 	template<typename Type> vec3<Type> operator/(const vec3<Type>& vec, const mat3<Type>& mat) { return vec * Inverse(mat); }
