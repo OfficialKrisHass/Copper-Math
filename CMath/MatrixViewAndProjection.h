@@ -5,11 +5,11 @@
 
 namespace CMATH_NAMESPACE {
 
-	template<typename T> inline mat4<T> ViewMatrix(const vec3<T>& pos, const vec3<T>& forward, const vec3<T>& up) {
+	template<typename T> inline mat4<T> ViewMatrix(const vec<3, T>& pos, const vec<3, T>& forward, const vec<3, T>& up) {
 
-		vec3<T> f(forward.Normalized());
-		vec3<T> s((f.Cross(up)).Normalized());
-		vec3<T> u(s.Cross(f));
+		vec<3, T> f(forward.Normalized());
+		vec<3, T> s((f.Cross(up)).Normalized());
+		vec<3, T> u(s.Cross(f));
 
 		mat4<T> ret;
 

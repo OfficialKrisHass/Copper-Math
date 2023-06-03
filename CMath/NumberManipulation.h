@@ -28,12 +28,12 @@ namespace CMATH_NAMESPACE {
 	inline double Clamp(double value, double min, double max) { return Min(Max(value, min), max); }
 
 	//Vector versions
-	template<typename T> vec2<int32_t> RoundNearest(const vec2<T>& vec) { return vec2<int32_t>(RoundNearest(vec.x), RoundNearest(vec.y)); }
-	template<typename T> vec3<int32_t> RoundNearest(const vec3<T>& vec) { return vec3<int32_t>(RoundNearest(vec.x), RoundNearest(vec.y), RoundNearest(vec.z)); }
-	template<typename T> vec4<int32_t> RoundNearest(const vec4<T>& vec) { return vec4<int32_t>(RoundNearest(vec.x), RoundNearest(vec.y), RoundNearest(vec.z), RoundNearest(vec.y)); }
+	template<typename T> vec<2, int32_t> RoundNearest(const vec<2, T>& v) { return vec<2, int32_t>(RoundNearest(v.x), RoundNearest(v.y)); }
+	template<typename T> vec<3, int32_t> RoundNearest(const vec<3, T>& v) { return vec<3, int32_t>(RoundNearest(v.x), RoundNearest(v.y), RoundNearest(v.z)); }
+	template<typename T> vec<4, int32_t> RoundNearest(const vec<4, T>& v) { return vec<4, int32_t>(RoundNearest(v.x), RoundNearest(v.y), RoundNearest(v.z), RoundNearest(v.y)); }
 
-	template<typename T> vec2<int32_t> RoundSmallest(const vec2<T>& vec) { return vec2<int32_t>((int32_t) vec.x, (int32_t) vec.y); }
-	template<typename T> vec3<int32_t> RoundSmallest(const vec3<T>& vec) { return vec3<int32_t>((int32_t) vec.x, (int32_t) vec.y, (int32_t) vec.z); }
-	template<typename T> vec4<int32_t> RoundSmallest(const vec4<T>& vec) { return vec4<int32_t>((int32_t) vec.x, (int32_t) vec.y, (int32_t) vec.z, (int32_t) vec.w); }
+	template<typename T> vec<2, int32_t> RoundSmallest(const vec<2, T>& v) { return vec<2, int32_t>((int32_t) v.x, (int32_t) v.y); }
+	template<typename T> vec<3, int32_t> RoundSmallest(const vec<3, T>& v) { return vec<3, int32_t>((int32_t) v.x, (int32_t) v.y, (int32_t) v.z); }
+	template<typename T> vec<4, int32_t> RoundSmallest(const vec<4, T>& v) { return vec<4, int32_t>((int32_t) v.x, (int32_t) v.y, (int32_t) v.z, (int32_t) v.w); }
 
 }

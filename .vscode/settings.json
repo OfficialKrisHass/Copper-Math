@@ -1,0 +1,10 @@
+{
+    "C_Cpp.default.compilerPath": "/usr/bin/g++",
+    "C_Cpp.default.includePath": [
+        "CMath",
+        "GLM/include"
+    ],
+    "C_Cpp.default.defines": [
+        "INCLUDE_GLM"
+    ]
+}

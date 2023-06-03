@@ -40,8 +40,7 @@ int main() {
 	TestViewAndProjectionMatrix();
 
 	PrintUnsuccessfullFeatures();
-
-	std::cin.get();
+	
 	return 0;
 
 }

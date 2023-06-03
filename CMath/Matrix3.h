@@ -22,7 +22,7 @@ namespace CMATH_NAMESPACE {
 			cols[2].z = identity;
 
 		}
-		mat3(const vec3<Type>& col0, const vec3<Type>& col1, const vec3<Type>& col2) {
+		mat3(const vec<3, Type>& col0, const vec<3, Type>& col1, const vec<3, Type>& col2) {
 
 			cols[0] = col0;
 			cols[1] = col1;
@@ -38,7 +38,7 @@ namespace CMATH_NAMESPACE {
 
 		}
 
-		vec3<Type> cols[3];
+		vec<3, Type> cols[3];
 
 		//----Math Funcions----
 		inline mat3<Type>& TurnInverse() {
@@ -73,14 +73,14 @@ namespace CMATH_NAMESPACE {
 		inline mat3<Type> operator-(const Type scalar) const { return mat3<Type>(cols[0] - scalar, cols[1] - scalar, cols[2] - scalar); }
 		inline mat3<Type> operator*(const Type scalar) const { return mat3<Type>(cols[0] * scalar, cols[1] * scalar, cols[2] * scalar); }
 
-		inline vec3<Type> operator*(const vec3<Type>& vec) {
+		inline vec<3, Type> operator*(const vec<3, Type>& v) {
 
-			return vec3<Type>(cols[0].x * vec.x + cols[1].x * vec.y + cols[2].x * vec.z,
-							  cols[0].y * vec.x + cols[1].y * vec.y + cols[2].y * vec.z,
-							  cols[0].z * vec.x + cols[1].z * vec.y + cols[2].z * vec.z);
+			return vec<3, Type>(cols[0].x * v.x + cols[1].x * v.y + cols[2].x * v.z,
+								cols[0].y * v.x + cols[1].y * v.y + cols[2].y * v.z,
+								cols[0].z * v.x + cols[1].z * v.y + cols[2].z * v.z);
 
 		}
-		inline vec3<Type> operator/(const vec3<Type>& vec) {
+		inline vec<3, Type> operator/(const vec<3, Type>& vec) {
 
 			return Inverse(*this) * vec;
 
@@ -205,7 +205,7 @@ namespace CMATH_NAMESPACE {
 		//----Misc. Operators
 
 		inline mat3<Type> operator-() const { return mat3<Type>(-cols[0], -cols[1], -cols[2]); }
-		inline vec3<Type>& operator[](uint32_t index) { return cols[index]; }
+		inline vec<3, Type>& operator[](uint32_t index) { return cols[index]; }
 
 	};
 	template<typename Type> mat3<Type> Inverse(const mat3<Type>& mat) {
@@ -235,14 +235,14 @@ namespace CMATH_NAMESPACE {
 	template<typename Type> mat3<Type> operator-(Type scalar, const mat3<Type>& mat) { return mat3<Type>(mat.cols[0] - scalar, mat.cols[1] - scalar, mat.cols[2] - scalar); }
 	template<typename Type> mat3<Type> operator*(Type scalar, const mat3<Type>& mat) { return mat3<Type>(mat.cols[0] * scalar, mat.cols[1] * scalar, mat.cols[2] * scalar); }
 
-	template<typename Type> vec3<Type> operator*(const vec3<Type>& vec, const mat3<Type>& mat) {
+	template<typename Type> vec<3, Type> operator*(const vec<3, Type>& v, const mat3<Type>& mat) {
 
-		return vec3<Type>(mat.cols[0].x * vec.x + mat.cols[0].y * vec.y + mat.cols[0].z * vec.z,
-						  mat.cols[1].x * vec.x + mat.cols[1].y * vec.y + mat.cols[1].z * vec.z,
-						  mat.cols[2].x * vec.x + mat.cols[2].y * vec.y + mat.cols[2].z * vec.z);
+		return vec<3, Type>(mat.cols[0].x * v.x + mat.cols[0].y * v.y + mat.cols[0].z * v.z,
+						  	mat.cols[1].x * v.x + mat.cols[1].y * v.y + mat.cols[1].z * v.z,
+						  	mat.cols[2].x * v.x + mat.cols[2].y * v.y + mat.cols[2].z * v.z);
 
 	}
-	template<typename Type> vec3<Type> operator/(const vec3<Type>& vec, const mat3<Type>& mat) { return vec * Inverse(mat); }
+	template<typename Type> vec<3, Type> operator/(const vec<3, Type>& vec, const mat3<Type>& mat) { return vec * Inverse(mat); }
 	
 	typedef mat3<float> Matrix3;
 	typedef mat3<int32_t> Matrix3I;

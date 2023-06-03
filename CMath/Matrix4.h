@@ -24,7 +24,7 @@ namespace CMATH_NAMESPACE {
 			cols[3].w = identity;
 
 		}
-		mat4(vec4<Type> col0, vec4<Type> col1, vec4<Type> col2, vec4<Type> col3) {
+		mat4(vec<4, Type> col0, vec<4, Type> col1, vec<4, Type> col2, vec<4, Type> col3) {
 
 			cols[0] = col0;
 			cols[1] = col1;
@@ -33,7 +33,7 @@ namespace CMATH_NAMESPACE {
 
 		}
 
-		vec4<Type> cols[4];
+		vec<4, Type> cols[4];
 
 		//---- Math Functions----
 
@@ -67,30 +67,30 @@ namespace CMATH_NAMESPACE {
 			Type c22 = cols[1].x * cols[3].y - cols[3].x * cols[1].y;
 			Type c23 = cols[1].x * cols[2].y - cols[2].x * cols[1].y;
 
-			vec4<Type> f0(c00, c00, c02, c03);
-			vec4<Type> f1(c04, c04, c06, c07);
-			vec4<Type> f2(c08, c08, c10, c11);
-			vec4<Type> f3(c12, c12, c14, c15);
-			vec4<Type> f4(c16, c16, c18, c19);
-			vec4<Type> f5(c20, c20, c22, c23);
+			vec<4, Type> f0(c00, c00, c02, c03);
+			vec<4, Type> f1(c04, c04, c06, c07);
+			vec<4, Type> f2(c08, c08, c10, c11);
+			vec<4, Type> f3(c12, c12, c14, c15);
+			vec<4, Type> f4(c16, c16, c18, c19);
+			vec<4, Type> f5(c20, c20, c22, c23);
 
-			vec4<Type> vec0(cols[1].x, cols[0].x, cols[0].x, cols[0].x);
-			vec4<Type> vec1(cols[1].y, cols[0].y, cols[0].y, cols[0].y);
-			vec4<Type> vec2(cols[1].z, cols[0].z, cols[0].z, cols[0].z);
-			vec4<Type> vec3(cols[1].w, cols[0].w, cols[0].w, cols[0].w);
+			vec<4, Type> vec0(cols[1].x, cols[0].x, cols[0].x, cols[0].x);
+			vec<4, Type> vec1(cols[1].y, cols[0].y, cols[0].y, cols[0].y);
+			vec<4, Type> vec2(cols[1].z, cols[0].z, cols[0].z, cols[0].z);
+			vec<4, Type> vec3(cols[1].w, cols[0].w, cols[0].w, cols[0].w);
 
-			vec4<Type> inv0(vec1 * f0 - vec2 * f1 + vec3 * f2);
-			vec4<Type> inv1(vec0 * f0 - vec2 * f3 + vec3 * f4);
-			vec4<Type> inv2(vec0 * f1 - vec1 * f3 + vec3 * f5);
-			vec4<Type> inv3(vec0 * f2 - vec1 * f4 + vec2 * f5);
+			vec<4, Type> inv0(vec1 * f0 - vec2 * f1 + vec3 * f2);
+			vec<4, Type> inv1(vec0 * f0 - vec2 * f3 + vec3 * f4);
+			vec<4, Type> inv2(vec0 * f1 - vec1 * f3 + vec3 * f5);
+			vec<4, Type> inv3(vec0 * f2 - vec1 * f4 + vec2 * f5);
 			
-			vec4<Type> a( 1, -1,  1, -1);
-			vec4<Type> b(-1,  1, -1,  1);
+			vec<4, Type> a( 1, -1,  1, -1);
+			vec<4, Type> b(-1,  1, -1,  1);
 
 			mat4<Type> inverse(inv0 * a, inv1 * b, inv2 * a, inv3 * b);
 
-			vec4<Type> r0(inverse.cols[0].x, inverse.cols[1].x, inverse.cols[2].x, inverse.cols[3].x);
-			vec4<Type> d0(cols[0] * r0);
+			vec<4, Type> r0(inverse.cols[0].x, inverse.cols[1].x, inverse.cols[2].x, inverse.cols[3].x);
+			vec<4, Type> d0(cols[0] * r0);
 
 			Type d1 = (d0.x + d0.y) + (d0.z + d0.w);
 			
@@ -108,8 +108,8 @@ namespace CMATH_NAMESPACE {
 		inline mat4<Type> operator-(const Type scalar) const { return mat4<Type>(cols[0] - scalar, cols[1] - scalar, cols[2] - scalar, cols[3] - scalar); }
 		inline mat4<Type> operator*(const Type scalar) const { return mat4<Type>(cols[0] * scalar, cols[1] * scalar, cols[2] * scalar, cols[3] * scalar); }
 
-		inline vec4<Type> operator*(const vec4<Type>& vec) const { return cols[0] * vec.x + cols[1] * vec.y + cols[2] * vec.z + cols[3] * vec.w; }
-		inline vec4<Type> operator/(const vec4<Type>& vec) const { return Inverse(*this) * vec; }
+		inline vec<4, Type> operator*(const vec<4, Type>& vec) const { return cols[0] * vec.x + cols[1] * vec.y + cols[2] * vec.z + cols[3] * vec.w; }
+		inline vec<4, Type> operator/(const vec<4, Type>& vec) const { return Inverse(*this) * vec; }
 
 		//----Math and Assignement operators----
 
@@ -242,7 +242,7 @@ namespace CMATH_NAMESPACE {
 		//----Misc. Operators----
 
 		inline mat4<Type> operator-() const { return mat4<Type>(-cols[0], -cols[1], -cols[2], -cols[3]); }
-		inline vec4<Type>& operator[](uint32_t index) { return cols[index]; }
+		inline vec<4, Type>& operator[](uint32_t index) { return cols[index]; }
 
 	};
 	template<typename Type> mat4<Type> Inverse(const mat4<Type>& m) {
@@ -275,30 +275,30 @@ namespace CMATH_NAMESPACE {
 		Type c22 = m.cols[1].x * m.cols[3].y - m.cols[3].x * m.cols[1].y;
 		Type c23 = m.cols[1].x * m.cols[2].y - m.cols[2].x * m.cols[1].y;
 
-		vec4<Type> f0(c00, c00, c02, c03);
-		vec4<Type> f1(c04, c04, c06, c07);
-		vec4<Type> f2(c08, c08, c10, c11);
-		vec4<Type> f3(c12, c12, c14, c15);
-		vec4<Type> f4(c16, c16, c18, c19);
-		vec4<Type> f5(c20, c20, c22, c23);
+		vec<4, Type> f0(c00, c00, c02, c03);
+		vec<4, Type> f1(c04, c04, c06, c07);
+		vec<4, Type> f2(c08, c08, c10, c11);
+		vec<4, Type> f3(c12, c12, c14, c15);
+		vec<4, Type> f4(c16, c16, c18, c19);
+		vec<4, Type> f5(c20, c20, c22, c23);
 
-		vec4<Type> vec0(m.cols[1].x, m.cols[0].x, m.cols[0].x, m.cols[0].x);
-		vec4<Type> vec1(m.cols[1].y, m.cols[0].y, m.cols[0].y, m.cols[0].y);
-		vec4<Type> vec2(m.cols[1].z, m.cols[0].z, m.cols[0].z, m.cols[0].z);
-		vec4<Type> vec3(m.cols[1].w, m.cols[0].w, m.cols[0].w, m.cols[0].w);
+		vec<4, Type> vec0(m.cols[1].x, m.cols[0].x, m.cols[0].x, m.cols[0].x);
+		vec<4, Type> vec1(m.cols[1].y, m.cols[0].y, m.cols[0].y, m.cols[0].y);
+		vec<4, Type> vec2(m.cols[1].z, m.cols[0].z, m.cols[0].z, m.cols[0].z);
+		vec<4, Type> vec3(m.cols[1].w, m.cols[0].w, m.cols[0].w, m.cols[0].w);
 
-		vec4<Type> inv0(vec1 * f0 - vec2 * f1 + vec3 * f2);
-		vec4<Type> inv1(vec0 * f0 - vec2 * f3 + vec3 * f4);
-		vec4<Type> inv2(vec0 * f1 - vec1 * f3 + vec3 * f5);
-		vec4<Type> inv3(vec0 * f2 - vec1 * f4 + vec2 * f5);
+		vec<4, Type> inv0(vec1 * f0 - vec2 * f1 + vec3 * f2);
+		vec<4, Type> inv1(vec0 * f0 - vec2 * f3 + vec3 * f4);
+		vec<4, Type> inv2(vec0 * f1 - vec1 * f3 + vec3 * f5);
+		vec<4, Type> inv3(vec0 * f2 - vec1 * f4 + vec2 * f5);
 
-		vec4<Type> a(1, -1, 1, -1);
-		vec4<Type> b(-1, 1, -1, 1);
+		vec<4, Type> a(1, -1, 1, -1);
+		vec<4, Type> b(-1, 1, -1, 1);
 
 		mat4<Type> inverse(inv0 * a, inv1 * b, inv2 * a, inv3 * b);
 
-		vec4<Type> r0(inverse[0].x, inverse[1].x, inverse[2].x, inverse[3].x);
-		vec4<Type> d0(m.cols[0] * r0);
+		vec<4, Type> r0(inverse[0].x, inverse[1].x, inverse[2].x, inverse[3].x);
+		vec<4, Type> d0(m.cols[0] * r0);
 
 		Type d1 = (d0.x + d0.y) + (d0.z + d0.w);
 
@@ -312,15 +312,15 @@ namespace CMATH_NAMESPACE {
 	template<typename Type> mat4<Type> operator-(Type scalar, const mat4<Type>& mat) { return mat4<Type>(mat.cols[0] - scalar, mat.cols[1] - scalar, mat.cols[2] - scalar, mat.cols[3] - scalar); }
 	template<typename Type> mat4<Type> operator*(Type scalar, const mat4<Type>& mat) { return mat4<Type>(mat.cols[0] * scalar, mat.cols[1] * scalar, mat.cols[2] * scalar, mat.cols[3] * scalar); }
 	
-	template<typename Type> vec4<Type> operator*(const vec4<Type>& vec, const mat4<Type>& mat) {
+	template<typename Type> vec<4, Type> operator*(const vec<4, Type>& v, const mat4<Type>& mat) {
 
-		return vec4<Type>(mat.cols[0].x * vec.x + mat.cols[0].y * vec.y + mat.cols[0].z * vec.z + mat.cols[0].w * vec.w,
-						  mat.cols[1].x * vec.x + mat.cols[1].y * vec.y + mat.cols[1].z * vec.z + mat.cols[1].w * vec.w,
-						  mat.cols[2].x * vec.x + mat.cols[2].y * vec.y + mat.cols[2].z * vec.z + mat.cols[2].w * vec.w,
-						  mat.cols[3].x * vec.x + mat.cols[3].y * vec.y + mat.cols[3].z * vec.z + mat.cols[3].w * vec.w);
+		return vec<4, Type>(mat.cols[0].x * v.x + mat.cols[0].y * v.y + mat.cols[0].z * v.z + mat.cols[0].w * v.w,
+						    mat.cols[1].x * v.x + mat.cols[1].y * v.y + mat.cols[1].z * v.z + mat.cols[1].w * v.w,
+						    mat.cols[2].x * v.x + mat.cols[2].y * v.y + mat.cols[2].z * v.z + mat.cols[2].w * v.w,
+						    mat.cols[3].x * v.x + mat.cols[3].y * v.y + mat.cols[3].z * v.z + mat.cols[3].w * v.w);
 
 	}
-	template<typename Type> vec4<Type> operator/(const vec4<Type>& vec, const mat4<Type>& mat) { return vec * Inverse(mat); }
+	template<typename Type> vec<4, Type> operator/(const vec<4, Type>& vec, const mat4<Type>& mat) { return vec * Inverse(mat); }
 
 	typedef mat4<float> Matrix4;
 	typedef mat4<int32_t> Matrix4I;

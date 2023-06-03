@@ -32,28 +32,28 @@ namespace CMATH_NAMESPACE {
 	
 	//Trigonometry
 
-	template<typename T> inline vec2<T> Sin(const vec2<T>& v) { return vec2<T>(std::sin(v.x), std::sin(v.y)); }
-	template<typename T> inline vec2<T> Cos(const vec2<T>& v) { return vec2<T>(std::cos(v.x), std::cos(v.y)); }
-	template<typename T> inline vec2<T> Tan(const vec2<T>& v) { return vec2<T>(std::tan(v.x), std::tan(v.y)); }
+	template<typename T> inline vec<2, T> Sin(const vec<2, T>& v) { return vec<2, T>(std::sin(v.x), std::sin(v.y)); }
+	template<typename T> inline vec<2, T> Cos(const vec<2, T>& v) { return vec<2, T>(std::cos(v.x), std::cos(v.y)); }
+	template<typename T> inline vec<2, T> Tan(const vec<2, T>& v) { return vec<2, T>(std::tan(v.x), std::tan(v.y)); }
 
-	template<typename T> inline vec3<T> Sin(const vec3<T>& v) { return vec3<T>(std::sin(v.x), std::sin(v.y), std::sin(v.z)); }
-	template<typename T> inline vec3<T> Cos(const vec3<T>& v) { return vec3<T>(std::cos(v.x), std::cos(v.y), std::cos(v.z)); }
-	template<typename T> inline vec3<T> Tan(const vec3<T>& v) { return vec3<T>(std::tan(v.x), std::tan(v.y), std::tan(v.z)); }
+	template<typename T> inline vec<3, T> Sin(const vec<3, T>& v) { return vec<3, T>(std::sin(v.x), std::sin(v.y), std::sin(v.z)); }
+	template<typename T> inline vec<3, T> Cos(const vec<3, T>& v) { return vec<3, T>(std::cos(v.x), std::cos(v.y), std::cos(v.z)); }
+	template<typename T> inline vec<3, T> Tan(const vec<3, T>& v) { return vec<3, T>(std::tan(v.x), std::tan(v.y), std::tan(v.z)); }
 
-	template<typename T> inline vec4<T> Sin(const vec4<T>& v) { return vec4<T>(std::sin(v.x), std::sin(v.y), std::sin(v.z), std::sin(v.z)); }
-	template<typename T> inline vec4<T> Cos(const vec4<T>& v) { return vec4<T>(std::cos(v.x), std::cos(v.y), std::cos(v.z), std::cos(v.z)); }
-	template<typename T> inline vec4<T> Tan(const vec4<T>& v) { return vec4<T>(std::tan(v.x), std::tan(v.y), std::tan(v.z), std::tan(v.z)); }
+	template<typename T> inline vec<4, T> Sin(const vec<4, T>& v) { return vec<4, T>(std::sin(v.x), std::sin(v.y), std::sin(v.z), std::sin(v.z)); }
+	template<typename T> inline vec<4, T> Cos(const vec<4, T>& v) { return vec<4, T>(std::cos(v.x), std::cos(v.y), std::cos(v.z), std::cos(v.z)); }
+	template<typename T> inline vec<4, T> Tan(const vec<4, T>& v) { return vec<4, T>(std::tan(v.x), std::tan(v.y), std::tan(v.z), std::tan(v.z)); }
 
 	//Conversions
 
-	template<typename T> inline vec2<T> RadiansToDegrees(const vec2<T>& v) { return vec2<T>(v.x * T(57.2957795), v.y * T(57.2957795)); }
-	template<typename T> inline vec2<T> DegreesToRadians(const vec2<T>& v) { return vec2<T>(v.x * T(0.0174532925), v.y * T(0.0174532925)); }
+	template<typename T> inline vec<2, T> RadiansToDegrees(const vec<2, T>& v) { return vec<2, T>(v.x * T(57.2957795), v.y * T(57.2957795)); }
+	template<typename T> inline vec<2, T> DegreesToRadians(const vec<2, T>& v) { return vec<2, T>(v.x * T(0.0174532925), v.y * T(0.0174532925)); }
 
-	template<typename T> inline vec3<T> RadiansToDegrees(const vec3<T>& v) { return vec3<T>(v.x * T(57.2957795), v.y * T(57.2957795), v.z * T(57.2957795)); }
-	template<typename T> inline vec3<T> DegreesToRadians(const vec3<T>& v) { return vec3<T>(v.x * T(0.0174532925), v.y * T(0.0174532925), v.z * T(0.0174532925)); }
+	template<typename T> inline vec<3, T> RadiansToDegrees(const vec<3, T>& v) { return vec<3, T>(v.x * T(57.2957795), v.y * T(57.2957795), v.z * T(57.2957795)); }
+	template<typename T> inline vec<3, T> DegreesToRadians(const vec<3, T>& v) { return vec<3, T>(v.x * T(0.0174532925), v.y * T(0.0174532925), v.z * T(0.0174532925)); }
 
-	template<typename T> inline vec4<T> RadiansToDegrees(const vec4<T>& v) { return vec4<T>(v.x * T(57.2957795), v.y * T(57.2957795), v.z * T(57.2957795), v.w * T(57.2957795)); }
-	template<typename T> inline vec4<T> DegreesToRadians(const vec4<T>& v) { return vec4<T>(v.x * T(0.0174532925), v.y * T(0.0174532925), v.z * T(0.0174532925), v.w * T(0.0174532925)); }
+	template<typename T> inline vec<4, T> RadiansToDegrees(const vec<4, T>& v) { return vec<4, T>(v.x * T(57.2957795), v.y * T(57.2957795), v.z * T(57.2957795), v.w * T(57.2957795)); }
+	template<typename T> inline vec<4, T> DegreesToRadians(const vec<4, T>& v) { return vec<4, T>(v.x * T(0.0174532925), v.y * T(0.0174532925), v.z * T(0.0174532925), v.w * T(0.0174532925)); }
 
 
 }
