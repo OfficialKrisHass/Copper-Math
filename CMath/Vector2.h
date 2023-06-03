@@ -193,7 +193,8 @@ namespace CMATH_NAMESPACE {
 		//----Misc Operators----
 
 		vec<2, Type> operator-() const { return vec<2, Type>(-x, -y); }
-		float& operator[](uint32_t index) const { return this[index]; }
+		Type& operator[](uint32_t index) { return (&x)[index]; }
+		const Type& operator[](uint32_t index) const { return (&x)[index]; }
 
 	};
 

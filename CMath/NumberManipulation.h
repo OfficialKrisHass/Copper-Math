@@ -36,4 +36,6 @@ namespace CMATH_NAMESPACE {
 	template<typename T> vec<3, int32_t> RoundSmallest(const vec<3, T>& v) { return vec<3, int32_t>((int32_t) v.x, (int32_t) v.y, (int32_t) v.z); }
 	template<typename T> vec<4, int32_t> RoundSmallest(const vec<4, T>& v) { return vec<4, int32_t>((int32_t) v.x, (int32_t) v.y, (int32_t) v.z, (int32_t) v.w); }
 
+	template<typename T> T Absolute(T value) { return value >= T(0) ? value : -value; }
+
 }

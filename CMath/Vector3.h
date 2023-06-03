@@ -36,8 +36,8 @@ namespace CMATH_NAMESPACE {
 		inline vec<3, Type> Cross(const vec<3, Type>& other) const {
 
 			return vec<3, Type>(y * other.z - z * other.y,
-							  z * other.x - x * other.z,
-							  x * other.y - y * other.x);
+							  	z * other.x - x * other.z,
+							  	x * other.y - y * other.x);
 
 		}
 
@@ -212,7 +212,8 @@ namespace CMATH_NAMESPACE {
 		//----Misc. Operators----
 
 		vec<3, Type> operator-() const { return vec<3, Type>(-x, -y, -z); }
-		float& operator[](uint32_t index) const { return this[index]; }
+		Type& operator[](uint32_t index) { return (&x)[index]; }
+		const Type& operator[](uint32_t index) const { return (&x)[index]; }
 	
 	};
 	

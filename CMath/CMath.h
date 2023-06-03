@@ -16,6 +16,10 @@
 
 #include "Vectors.h"
 
+//Quaternions
+
+#include "Quaternion.h"
+
 //Matrices
 
 #include "Matrix3.h"

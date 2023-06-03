@@ -8,6 +8,8 @@
 #include <GLM/ext/matrix_transform.hpp>
 #include <GLM/ext/matrix_clip_space.hpp>
 
+#include <GLM/gtx/quaternion.hpp>
+
 using namespace CMATH_NAMESPACE;
 
 #define Test(x, y, feature) { if(x == y) { std::cout << feature << " was Successfull!" << std::endl; }\
@@ -20,10 +22,13 @@ std::vector<std::string> unsuccessfullFeatures;
 void TestNumberManipulation();
 void TestTrigonometry();
 void TestVectorMath();
+void TestQuaternionMath();
 void TestMatrixMath();
 
 void TestTransformMatrix();
 void TestViewAndProjectionMatrix();
+
+void TestQuaternionRotation();
 
 void PrintUnsuccessfullFeatures();
 
@@ -32,12 +37,13 @@ int main() {
 	TestNumberManipulation();
 	TestTrigonometry();
 	TestVectorMath();
+	TestQuaternionMath();
 	TestMatrixMath();
-
-	glm::mat3 mat;
 
 	TestTransformMatrix();
 	TestViewAndProjectionMatrix();
+
+	TestQuaternionRotation();
 
 	PrintUnsuccessfullFeatures();
 	
@@ -178,6 +184,37 @@ void TestVectorMath() {
 	std::cout << std::endl;
 
 }
+void TestQuaternionMath() {
+
+	std::cout << "-------------------------" << std::endl;
+	std::cout << "-----Quaternion Math-----" << std::endl;
+	std::cout << "-------------------------" << std::endl;
+	std::cout << std::endl;
+
+	Quaternion a;
+	Quaternion b = Quaternion(1.0f, 0.9f, 0.0f, 1.0f);
+	Quaternion c = Quaternion(0.0f, 0.8f, 1.0f, 0.3f);
+
+	Vector3 v3 = Vector3(3.5f, 8.9f, 7.6f);
+	Vector4 v4 = Vector4(3.9f, 7.2f, 4.5f, 1.9f);
+
+	Test(a + b, (glm::quat) a + (glm::quat) b, "Quaternion Addition - a + b");
+	Test(a - b, (glm::quat) a - (glm::quat) b, "Quaternion Subtraction - a - b");
+	Test(a * b, (glm::quat) a * (glm::quat) b, "Quaternion Multiplication - a * b");
+
+	std::cout << "\n";
+
+	Test(c * v3, (glm::quat) c * (glm::vec3) v3, "Quaternion Vector 3 Multiplication - a * v3");
+	Test(c * v4, (glm::quat) c * (glm::vec4) v4, "Quaternion Vector 4 Multiplication - a * v3");
+
+	std::cout << "\n";
+
+	Test(b * 3.8f, (glm::quat) b * 3.8f, "Quaternion Scalar Multiplication - b * 3.8");
+	Test(b / 2.0f, (glm::quat) b / 2.0f, "Quaternion Scalar Dividing - b / 2.0");
+
+	std::cout << std::endl;
+
+}
 void TestMatrixMath() {
 
 	std::cout << "---------------------" << std::endl;
@@ -262,10 +299,36 @@ void TestViewAndProjectionMatrix() {
 
 }
 
+void TestQuaternionRotation() {
+
+	std::cout << "-----------------------------" << std::endl;
+	std::cout << "-----Quaternion Rotation-----" << std::endl;
+	std::cout << "-----------------------------" << std::endl;
+	std::cout << std::endl;
+
+	Quaternion rot1 = Quaternion(Vector3(0.0f));
+	Quaternion rot2 = Quaternion(Vector3(90.0f, 45.0f, 0.0f));
+	Quaternion rot3 = Quaternion(Vector3(0.0f, 180.0f, 45.0f));
+
+	Test(rot1, glm::quat(glm::radians(glm::vec3(0.0f))), "Rotation 0, 0, 0");
+	Test(rot2, glm::quat(glm::radians(glm::vec3(90.0f, 45.0f, 0.0f))), "Rotation 90, 45, 0");
+	Test(rot3, glm::quat(glm::radians(glm::vec3(0.0f, 180.0f, 45.0f))), "Rotation 0, 180, 45");
+
+	std::cout << "\n";
+
+	glm::eulerAngles(glm::quat());
+
+	Test(rot1.EulerAngles(), glm::degrees(glm::eulerAngles((glm::quat) rot1)), "Euler angles extraction - rot1");
+	Test(rot2.EulerAngles(), glm::degrees(glm::eulerAngles((glm::quat) rot2)), "Euler angles extraction - rot2");
+	Test(rot3.EulerAngles(), glm::degrees(glm::eulerAngles((glm::quat) rot3)), "Euler angles extraction - rot3");
+
+	std::cout << std::endl;
+
+}
+
 void PrintUnsuccessfullFeatures() {
 
-	std::cout << "\n\n\n" << std::endl;
-	std::cout << "These Features were unsuccessfull!" << std::endl;
+	std::cout << "\nThese Features were unsuccessfull!" << std::endl;
 
 	for (const std::string& feature : unsuccessfullFeatures) {
 
