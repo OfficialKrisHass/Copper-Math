@@ -316,8 +316,6 @@ void TestQuaternionRotation() {
 
 	std::cout << "\n";
 
-	glm::eulerAngles(glm::quat());
-
 	Test(rot1.EulerAngles(), glm::degrees(glm::eulerAngles((glm::quat) rot1)), "Euler angles extraction - rot1");
 	Test(rot2.EulerAngles(), glm::degrees(glm::eulerAngles((glm::quat) rot2)), "Euler angles extraction - rot2");
 	Test(rot3.EulerAngles(), glm::degrees(glm::eulerAngles((glm::quat) rot3)), "Euler angles extraction - rot3");
@@ -327,6 +325,8 @@ void TestQuaternionRotation() {
 }
 
 void PrintUnsuccessfullFeatures() {
+
+	if (unsuccessfullFeatures.size() == 0) return;
 
 	std::cout << "\nThese Features were unsuccessfull!" << std::endl;
 

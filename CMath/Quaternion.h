@@ -48,8 +48,8 @@ namespace CMATH_NAMESPACE {
 
         }
 
-        quat(const mat3<Type>& m) { *this = ConstructFromMat(m); }
-        quat(const mat4<Type>& m) { quat(mat3<Type>(m)); }
+        quat(const mat<3, Type>& m) { *this = ConstructFromMat(m); }
+        quat(const mat<4, Type>& m) { quat(mat<3, Type>(m)); }
 
         quat(const vec<3, Type>& u, const vec<3, Type>& v) {
 
@@ -225,6 +225,42 @@ namespace CMATH_NAMESPACE {
             operator glm::qua<Type>() const { return glm::qua<Type>(w, x, y, z); }
         #endif
 
+        //----Conversion Operators----
+
+        explicit operator mat<3, Type>() const {
+
+            mat<3, Type> ret;
+
+            Type xx(x * x);
+            Type yy(y * y);
+            Type zz(z * z);
+
+            Type xz(x * z);
+            Type xy(x * y);
+
+            Type yz(y * z);
+
+            Type wx(w * x);
+            Type wy(w * y);
+            Type wz(w * z);
+
+            ret[0].x = Type(1) - Type(2) * (yy + zz);
+            ret[0].y = Type(2) * (xy + wz);
+            ret[0].z = Type(2) * (xz - wy);
+
+            ret[1].x = Type(2) * (xy - wz);
+            ret[1].y = Type(1) - Type(2) * (xx + zz);
+            ret[1].z = Type(2) * (yz + wx);
+
+            ret[2].x = Type(2) * (xz + wy);
+            ret[2].y = Type(2) * (yz - wx);
+            ret[2].z = Type(1) - Type(2) * (xx + yy);
+
+            return ret;
+
+        }
+        explicit operator mat<4, Type>() const { return mat<4, Type>((mat<3, Type>) *this); }
+
         //----Misc. Operators----
 
         quat<Type> operator-() const { return quat<Type>(-w, -x, -y, -z); }
@@ -232,7 +268,7 @@ namespace CMATH_NAMESPACE {
 		const Type& operator[](uint32_t index) const { return (&x)[index]; }
 
     private:
-        quat<Type> ConstructFromMat(const mat3<Type>& m) {
+        quat<Type> ConstructFromMat(const mat<3, Type>& m) {
 
             Type fx = m[0].x - m[1].y - m[2].z;
             Type fy = m[1].y - m[0].x - m[2].z;

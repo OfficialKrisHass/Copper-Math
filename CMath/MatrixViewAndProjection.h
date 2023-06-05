@@ -5,13 +5,13 @@
 
 namespace CMATH_NAMESPACE {
 
-	template<typename T> inline mat4<T> ViewMatrix(const vec<3, T>& pos, const vec<3, T>& forward, const vec<3, T>& up) {
+	template<typename T> inline mat<4, T> ViewMatrix(const vec<3, T>& pos, const vec<3, T>& forward, const vec<3, T>& up) {
 
 		vec<3, T> f(forward.Normalized());
 		vec<3, T> s((f.Cross(up)).Normalized());
 		vec<3, T> u(s.Cross(f));
 
-		mat4<T> ret;
+		mat<4, T> ret;
 
 		ret[0].x =  s.x;
 		ret[1].x =  s.y;
@@ -30,10 +30,10 @@ namespace CMATH_NAMESPACE {
 		return ret;
 
 	}
-	template<typename T> inline mat4<T> ProjectionMatrix(T fov, T aspectRatio, T nearPlane, T farPlane) {
+	template<typename T> inline mat<4, T> ProjectionMatrix(T fov, T aspectRatio, T nearPlane, T farPlane) {
 
 		T tanHalfFov = Tan(fov / T(2));
-		mat4<T> ret(T(0));
+		mat<4, T> ret(T(0));
 
 		ret[0].x =  T(1) / (aspectRatio * tanHalfFov);
 		ret[1].y =  T(1) / tanHalfFov;

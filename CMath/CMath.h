@@ -6,6 +6,15 @@
 #define CMATH_NAMESPACE CMATH_PARENT_NAMESPACE::CMath
 #endif
 
+//Forward declarations
+
+namespace CMATH_NAMESPACE {
+
+    template<unsigned int N, typename Type> struct mat;
+    template<unsigned int N, typename Type> struct vec;
+
+}
+
 //Functions
 
 #include "Trigonometry.h"
@@ -21,7 +30,6 @@
 #include "Quaternion.h"
 
 //Matrices
-
 #include "Matrix3.h"
 #include "Matrix4.h"
 
