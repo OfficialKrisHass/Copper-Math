@@ -23,11 +23,11 @@ namespace CMATH_NAMESPACE {
         quat(Type w, const vec<3, Type>& v) : w(w), x(v.x), y(v.y), z(v.z) {}
         quat(Type w, Type x, Type y, Type z) : w(w), x(x), y(y), z(z) {}
 
-        quat(const vec<3, Type>& eulerAngles) {
+        quat(vec<3, Type> eulerAngles) {
             
-            vec<3, Type> eulerAnglesRad = DegreesToRadians(eulerAngles);
-            vec<3, Type> c = Cos(eulerAnglesRad * Type(0.5));
-            vec<3, Type> s = Sin(eulerAnglesRad * Type(0.5));
+            eulerAngles = DegreesToRadians(eulerAngles);
+            vec<3, Type> c = Cos(eulerAngles * Type(0.5));
+            vec<3, Type> s = Sin(eulerAngles * Type(0.5));
 
             this->w = c.x * c.y * c.z + s.x * s.y * s.z;
             this->x = s.x * c.y * c.z - c.x * s.y * s.z;
@@ -37,9 +37,9 @@ namespace CMATH_NAMESPACE {
         }
         quat(Type eulerX, Type eulerY, Type eulerZ) {
 
-            vec<3, Type> eulerAnglesRad = DegreesToRadians(vec<3, Type>(eulerX, eulerY, eulerZ));
-            vec<3, Type> c = Cos(eulerAnglesRad * Type(0.5));
-            vec<3, Type> s = Sin(eulerAnglesRad * Type(0.5));
+            vec<3, Type> eulerAngles = Vector3(DegreesToRadians(eulerX), DegreesToRadians(eulerY), DegreesToRadians(eulerZ));
+            vec<3, Type> c = Cos(eulerAngles * Type(0.5));
+            vec<3, Type> s = Sin(eulerAngles * Type(0.5));
 
             this->w = c.x * c.y * c.z + s.x * s.y * s.z;
             this->x = s.x * c.y * c.z - c.x * s.y * s.z;
@@ -70,6 +70,10 @@ namespace CMATH_NAMESPACE {
         }
 
         quat(const quat<Type>& q) : w(q.w), x(q.x), y(q.y), z(q.z) {}
+
+#ifdef INCLUDE_GLM
+        quat(const glm::qua<Type>& q) : w(q.w), x(q.x), y(q.y), z(q.z) {}
+#endif
 
         //----Data----
 
