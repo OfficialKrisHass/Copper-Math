@@ -184,7 +184,13 @@ namespace CMATH_NAMESPACE {
 		}
 		inline mat<4, Type>& operator*=(const mat<4, Type>& other) {
 
-			return *this * other;
+			mat<4, Type> tmp = *this * other;
+			cols[0] = tmp.cols[0];
+			cols[1] = tmp.cols[1];
+			cols[2] = tmp.cols[2];
+			cols[3] = tmp.cols[3];
+
+			return *this;
 
 		}
 		inline mat<4, Type>& operator/=(const mat<4, Type>& other) {
