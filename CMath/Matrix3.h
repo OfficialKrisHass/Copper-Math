@@ -36,6 +36,23 @@ namespace CMATH_NAMESPACE {
 
 		}
 
+	#ifdef INCLUDE_GLM
+		mat(const glm::mat<3, 3, Type>& mat) {
+
+			cols[0] = mat[0];
+			cols[1] = mat[1];
+			cols[2] = mat[2];
+
+		}
+		mat(const glm::mat<4, 4, Type>& mat) {
+
+			cols[0] = mat[0];
+			cols[1] = mat[1];
+			cols[2] = mat[2];
+
+		}
+	#endif
+
 		vec<3, Type> cols[3];
 
 		//----Math Funcions----

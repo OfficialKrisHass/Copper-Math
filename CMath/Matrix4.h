@@ -2,7 +2,7 @@
 
 #ifdef INCLUDE_GLM
 	#include <GLM/glm.hpp>
-	#include<GLM/mat4x4.hpp>
+	#include <GLM/mat4x4.hpp>
 #endif
 
 #include <stdint.h>
@@ -40,6 +40,25 @@ namespace CMATH_NAMESPACE {
 			cols[3] = vec<4, Type>(Type(0), Type(0), Type(0), Type(1));
 
 		}
+
+	#ifdef INCLUDE_GLM
+		mat(const glm::mat<4, 4, Type>& m) {
+
+			cols[0] = m[0];
+			cols[1] = m[1]
+			cols[2] = m[2]
+			cols[3] = m[3];
+
+		}
+		mat(const glm::mat<3, 3, Type>& m) {
+
+			cols[0] = m[0];
+			cols[1] = m[1];
+			cols[2] = m[2];
+			cols[3] = vec<4, Type>::zero;
+
+		}
+	#endif
 
 		vec<4, Type> cols[4];
 
@@ -110,7 +129,22 @@ namespace CMATH_NAMESPACE {
 
 		inline mat<4, Type> operator+(const mat<4, Type>& other) const { return mat<4, Type>(cols[0] + other.cols[0], cols[1] + other.cols[1], cols[2] + other.cols[2], cols[3] + other.cols[3]); }
 		inline mat<4, Type> operator-(const mat<4, Type>& other) const { return mat<4, Type>(cols[0] - other.cols[0], cols[1] - other.cols[1], cols[2] - other.cols[2], cols[3] - other.cols[3]); }
-		inline mat<4, Type> operator*(const mat<4, Type>& other) const { return mat<4, Type>(cols[0] * other.cols[0], cols[1] * other.cols[1], cols[2] * other.cols[2], cols[3] * other.cols[3]); }
+		inline mat<4, Type> operator*(const mat<4, Type>& other) const {
+			
+			vec<4, Type> col0 = other.cols[0];
+			vec<4, Type> col1 = other.cols[1];
+			vec<4, Type> col2 = other.cols[2];
+			vec<4, Type> col3 = other.cols[3];
+
+			mat<4, Type> ret;
+ 			ret.cols[0] = cols[0] * col0 + cols[1] * col0 + cols[2] * col0 + cols[3] * col0;
+			ret.cols[1] = cols[0] * col1 + cols[1] * col1 + cols[2] * col1 + cols[3] * col1;
+			ret.cols[2] = cols[0] * col2 + cols[1] * col2 + cols[2] * col2 + cols[3] * col2;
+			ret.cols[3] = cols[0] * col3 + cols[1] * col3 + cols[2] * col3 + cols[3] * col3;
+
+			return ret;
+			
+		}
 
 		inline mat<4, Type> operator+(const Type scalar) const { return mat<4, Type>(cols[0] + scalar, cols[1] + scalar, cols[2] + scalar, cols[3] + scalar); }
 		inline mat<4, Type> operator-(const Type scalar) const { return mat<4, Type>(cols[0] - scalar, cols[1] - scalar, cols[2] - scalar, cols[3] - scalar); }
@@ -150,11 +184,7 @@ namespace CMATH_NAMESPACE {
 		}
 		inline mat<4, Type>& operator*=(const mat<4, Type>& other) {
 
-			cols[0] *= other.cols[0];
-			cols[1] *= other.cols[1];
-			cols[2] *= other.cols[2];
-			cols[3] *= other.cols[3];
-			return *this;
+			return *this * other;
 
 		}
 		inline mat<4, Type>& operator/=(const mat<4, Type>& other) {
