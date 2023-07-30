@@ -45,8 +45,8 @@ namespace CMATH_NAMESPACE {
 		mat(const glm::mat<4, 4, Type>& m) {
 
 			cols[0] = m[0];
-			cols[1] = m[1]
-			cols[2] = m[2]
+			cols[1] = m[1];
+			cols[2] = m[2];
 			cols[3] = m[3];
 
 		}
