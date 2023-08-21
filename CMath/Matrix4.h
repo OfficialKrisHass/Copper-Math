@@ -137,10 +137,10 @@ namespace CMATH_NAMESPACE {
 			vec<4, Type> col3 = other.cols[3];
 
 			mat<4, Type> ret;
- 			ret.cols[0] = cols[0] * col0 + cols[1] * col0 + cols[2] * col0 + cols[3] * col0;
-			ret.cols[1] = cols[0] * col1 + cols[1] * col1 + cols[2] * col1 + cols[3] * col1;
-			ret.cols[2] = cols[0] * col2 + cols[1] * col2 + cols[2] * col2 + cols[3] * col2;
-			ret.cols[3] = cols[0] * col3 + cols[1] * col3 + cols[2] * col3 + cols[3] * col3;
+ 			ret.cols[0] = cols[0] * col0.x + cols[1] * col0.y +  cols[2] * col0.z + cols[3] * col0.w;
+			ret.cols[1] = cols[0] * col1.x + cols[1] * col1.y +  cols[2] * col1.z + cols[3] * col1.w;
+			ret.cols[2] = cols[0] * col2.x + cols[1] * col2.y +  cols[2] * col2.z + cols[3] * col2.w;
+			ret.cols[3] = cols[0] * col3.x + cols[1] * col3.y +  cols[2] * col3.z + cols[3] * col3.w;
 
 			return ret;
 			
