@@ -14,7 +14,7 @@ namespace CMATH_NAMESPACE {
 		vec(Type x, Type y, Type z = Type(0)) : x(x), y(y), z(z) {}
 
 		vec(const vec<2, Type>& xy, Type z = Type(0)) : x(xy.x), y(xy.y), z(z) {}
-		vec(Type x, const vec<2, Type>& yz) : x(x), y(yz.x), z(yz.x) {}
+		vec(Type x, const vec<2, Type>& yz) : x(x), y(yz.x), z(yz.y) {}
 
 		vec(const vec<4, Type>& vec)  : x(vec[0]), y(vec[1]), z(vec[2]) {}
 
