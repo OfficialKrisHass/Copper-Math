@@ -272,7 +272,9 @@ namespace CMATH_NAMESPACE {
 		const Type& operator[](uint32_t index) const { return (&x)[index]; }
 
     private:
-        quat<Type> ConstructFromMat(const mat<3, Type>& m) {
+        quat<Type> ConstructFromMat(const mat<3, Type>& mat) {
+
+            Matrix4 m = mat;
 
             Type fx = m[0].x - m[1].y - m[2].z;
             Type fy = m[1].y - m[0].x - m[2].z;
