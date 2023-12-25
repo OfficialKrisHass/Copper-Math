@@ -167,12 +167,12 @@ namespace CMATH_NAMESPACE {
 
 		//----Comparison Operators----
 
-		inline bool operator==(const vec<3, Type>& other) { return x == other.x && y == other.y && z == other.z; }
-		inline bool operator!=(const vec<3, Type>& other) { return x != other.x || y != other.y || z != other.z; }
+		inline bool operator==(const vec<3, Type>& other) const { return x == other.x && y == other.y && z == other.z; }
+		inline bool operator!=(const vec<3, Type>& other) const { return x != other.x || y != other.y || z != other.z; }
 
 	#ifdef INCLUDE_GLM
-		inline bool operator==(const glm::vec<3, Type>& other) { return x == other.x && y == other.y && z == other.z; }
-		inline bool operator!=(const glm::vec<3, Type>& other) { return x != other.x || y != other.y || z != other.z; }
+		inline bool operator==(const glm::vec<3, Type>& other) const { return x == other.x && y == other.y && z == other.z; }
+		inline bool operator!=(const glm::vec<3, Type>& other) const { return x != other.x || y != other.y || z != other.z; }
 
 		operator glm::vec<3, Type>() const { return glm::vec<3, Type>(x, y, z); }
 	#endif

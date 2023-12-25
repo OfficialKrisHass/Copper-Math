@@ -179,12 +179,12 @@ namespace CMATH_NAMESPACE {
 
 		//----Comparison Operators----
 
-		inline bool operator==(const vec<4, Type>& other) { return x == other.x && y == other.y && z == other.z && w == other.w; }
-		inline bool operator!=(const vec<4, Type>& other) { return x != other.x || y != other.y || z != other.z || w != other.w; }
+		inline bool operator==(const vec<4, Type>& other) const { return x == other.x && y == other.y && z == other.z && w == other.w; }
+		inline bool operator!=(const vec<4, Type>& other) const { return x != other.x || y != other.y || z != other.z || w != other.w; }
 
 	#ifdef INCLUDE_GLM
-		inline bool operator==(const glm::vec<4, Type>& other) { return x == other.x && y == other.y && z == other.z && w == other.w; }
-		inline bool operator!=(const glm::vec<4, Type>& other) { return x != other.x || y != other.y || z != other.z || w != other.w; }
+		inline bool operator==(const glm::vec<4, Type>& other) const { return x == other.x && y == other.y && z == other.z && w == other.w; }
+		inline bool operator!=(const glm::vec<4, Type>& other) const { return x != other.x || y != other.y || z != other.z || w != other.w; }
 
 		operator glm::vec<4, Type>() const { return glm::vec<4, Type>(x, y, z, w); }
 	#endif
