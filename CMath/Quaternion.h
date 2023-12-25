@@ -325,6 +325,13 @@ namespace CMATH_NAMESPACE {
     template<typename Type> vec<3, Type> operator*(const vec<3, Type>& v, const quat<Type>& q) { q.Inverse() * v; }
     template<typename Type> vec<4, Type> operator*(const vec<4, Type>& v, const quat<Type>& q) { q.Inverse() * v; }
 
+    template<typename T> inline std::ostream& operator<<(std::ostream& os, const quat<T>& qua) {
+
+        os << "W: {" << qua.w << "} X: {" << qua.x << "} Y: {" << qua.y << "} Z: {" << qua.z << "}";
+        return os;
+
+    }
+
     typedef quat<float> Quaternion;
     typedef quat<int32_t> QuaternionI;
     typedef quat<uint32_t> UQuaternionI;
