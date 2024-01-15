@@ -31,9 +31,9 @@ namespace CMATH_NAMESPACE {
 		Type z;
 		Type w;
 
-		static vec<4, Type> zero;
-		static vec<4, Type> one;
-		static vec<4, Type> minusOne;
+		static const vec<4, Type> zero;
+		static const vec<4, Type> one;
+		static const vec<4, Type> minusOne;
 
 		//----Math functions----
 

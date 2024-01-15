@@ -6,9 +6,9 @@
 
 #include <ostream>
 
-#define StaticMembers(Type)  template<> Type inline Type::zero = Type(0);\
-							 template<> Type inline Type::one = Type(1);\
-							 template<> Type inline Type::minusOne = Type(-1);
+#define StaticMembers(Type)  template<> const Type inline Type::zero = Type(0);\
+							 template<> const Type inline Type::one = Type(1);\
+							 template<> const Type inline Type::minusOne = Type(-1);
 
 namespace CMATH_NAMESPACE {
 
@@ -29,9 +29,9 @@ namespace CMATH_NAMESPACE {
 		Type x;
 		Type y;
 
-		static vec<2, Type> zero;
-		static vec<2, Type> one;
-		static vec<2, Type> minusOne;
+		static const vec<2, Type> zero;
+		static const vec<2, Type> one;
+		static const vec<2, Type> minusOne;
 
 		//----Math Functions----
 

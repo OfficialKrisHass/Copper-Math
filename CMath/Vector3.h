@@ -27,9 +27,9 @@ namespace CMATH_NAMESPACE {
 		Type y;
 		Type z;
 
-		static vec<3, Type> zero;
-		static vec<3, Type> one;
-		static vec<3, Type> minusOne;
+		static const vec<3, Type> zero;
+		static const vec<3, Type> one;
+		static const vec<3, Type> minusOne;
 
 		//----Math Functions----
 
