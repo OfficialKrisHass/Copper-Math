@@ -2,7 +2,7 @@
 [Tt]ests
 [Cc]Make
 
-[Mm]akefile
+compile_commands.json
 
 # VS Project Files
 *.vcxproj
