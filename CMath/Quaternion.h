@@ -82,6 +82,8 @@ namespace CMATH_NAMESPACE {
         Type y;
         Type z;
 
+        static const quat<Type> identity; 
+
         //----Math Functions----
 
         inline Type Dot(const quat<Type>& other) { return (x * other.x + y * other.y) + (z * other.z + w * other.w); }
@@ -335,5 +337,9 @@ namespace CMATH_NAMESPACE {
     typedef quat<float> Quaternion;
     typedef quat<int32_t> QuaternionI;
     typedef quat<uint32_t> UQuaternionI;
+
+    template<> const Quaternion inline Quaternion::identity = Quaternion(1.0f, 0.0f, 0.0f, 0.0f);
+    template<> const QuaternionI inline QuaternionI::identity = QuaternionI(1, 0, 0, 0);
+    template<> const UQuaternionI inline UQuaternionI::identity = UQuaternionI(1, 0, 0, 0);
 
 }
