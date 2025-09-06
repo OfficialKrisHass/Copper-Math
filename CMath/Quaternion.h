@@ -86,8 +86,8 @@ namespace CMATH_NAMESPACE {
 
         //----Math Functions----
 
-        inline Type Dot(const quat<Type>& other) { return (x * other.x + y * other.y) + (z * other.z + w * other.w); }
-        inline quat<Type> Cross(const quat<Type>& other) {
+        inline Type Dot(const quat<Type>& other) const { return (x * other.x + y * other.y) + (z * other.z + w * other.w); }
+        inline quat<Type> Cross(const quat<Type>& other) const {
 
             return quat<Type>(w * other.w - x * other.x - y * other.y - z * other.z,
 	                          w * other.x + x * other.w + y * other.z - z * other.y,
@@ -112,7 +112,7 @@ namespace CMATH_NAMESPACE {
 
         }
 
-        inline void Inverse() { return Conjugate() / Dot(*this); }
+        inline quat<Type> Inverse() const { return Conjugate() / Dot(*this); }
 
         inline vec<3, Type> EulerAngles() const { return RadiansToDegrees(vec<3, Type>(Pitch(), Yaw(), Roll())); }
 
