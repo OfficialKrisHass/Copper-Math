@@ -281,7 +281,7 @@ namespace CMATH_NAMESPACE {
             Type fx = m[0].x - m[1].y - m[2].z;
             Type fy = m[1].y - m[0].x - m[2].z;
             Type fz = m[2].z - m[0].x - m[1].y;
-            Type fw = m[0].x - m[1].y - m[2].z;
+            Type fw = m[0].x + m[1].y + m[2].z;
 
             int biggestIndex = 0;
             Type fBiggest = fw;
@@ -317,6 +317,8 @@ namespace CMATH_NAMESPACE {
                     return quat<Type>((m[2].x - m[0].z) * multiply, (m[0].y - m[1].x) * multiply, biggest, (m[1].z - m[2].y) * multiply);
                 case 3:
                     return quat<Type>((m[0].y - m[1].x) * multiply, (m[2].x - m[0].z) * multiply, (m[1].z - m[2].y) * multiply, biggest);
+                default:
+                    return quat<Type>::identity;
 
             }
 

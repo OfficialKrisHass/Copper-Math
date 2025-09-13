@@ -285,8 +285,9 @@ namespace CMATH_NAMESPACE {
 
 		//----Misc. Operators----
 
-		inline mat<4, Type> operator-() const { return mat<4, Type>(-cols[0], -cols[1], -cols[2], -cols[3]); }
-		inline vec<4, Type>& operator[](uint32_t index) { return cols[index]; }
+        inline mat<4, Type> operator-() const { return mat<4, Type>(-cols[0], -cols[1], -cols[2], -cols[3]); }
+        inline vec<4, Type>& operator[](uint32_t index) { return cols[index]; }
+        inline const vec<4, Type>& operator[](uint32_t index) const { return cols[index]; }
 
 	};
 	template<typename Type> mat<4, Type> Inverse(const mat<4, Type>& m) {
